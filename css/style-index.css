@@ -1,0 +1,431 @@
+/*!
+ * Start Bootstrap - Small Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* =========================
+   NAVIGATION
+========================= */
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body { color: #333; background: #fff; font-family: Arial, Helvetica, sans-serif; }
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 75px;
+
+    z-index: 100;
+
+    background: rgba(0, 0, 0, 0.15);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    letter-spacing: -2px;
+
+    margin-right: 70px;
+
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+nav ul {
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+
+    flex: 1;
+}
+
+nav ul li {
+    height: 100%;
+}
+
+nav ul li a {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+
+    transition: color 0.3s ease;
+}
+
+
+/* Underline animation */
+
+nav ul li a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 18px;
+
+    width: 0;
+    height: 2px;
+
+    background-color: white;
+
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #f0c52b;
+}
+
+
+/* =========================
+   RESERVATION BUTTON
+========================= */
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+
+    padding: 0 24px;
+
+    background-color: white;
+
+    color: #174b7a;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    border-radius: 3px;
+
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #f0c52b;
+    color: white;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+    min-height: 628px;
+    height: 628px;
+    width: 100%;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../images/indexBackgroundImage.webp");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+/*.hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 750px;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.48),
+            rgba(0, 0, 0, 0.48)
+        ),
+        url("../images/indexBackgroundImage.webp");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    text-align: center;
+
+    padding-top: 140px;
+}*/
+
+.hero-content {
+    position: absolute;
+    top: 24%;
+    left: 11%;
+    z-index: 2;
+    width: min(620px, 78%);
+    text-align: left;
+    transform: none;
+}
+
+.home-hero-logo {
+    width: clamp(105px, 10vw, 150px);
+    height: auto;
+    margin: 0 0 18px;
+    display: block;
+    filter: drop-shadow(0 5px 14px rgba(0, 0, 0, .28));
+}
+
+.hero h1 {
+    margin-top: 0;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(48px, 6vw, 74px);
+    font-weight: normal;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 600px;
+    margin: 0 0 26px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #c9a227;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.hero-button:hover {
+    background: #a98516;
+}
+
+/* =========================
+   HERO CARDS
+========================= */
+
+.hero-cards {
+    position: absolute;
+
+    bottom: 45px;
+
+    width: 90%;
+    max-width: 1200px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.hero-card {
+    position: relative;
+
+    height: 180px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+
+    transition: transform 0.3s ease;
+}
+
+
+.hero-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+
+/* Dark overlay */
+
+.hero-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    transition: background 0.3s ease;
+}
+
+
+/* Text */
+
+.hero-card span {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 0;
+    right: 0;
+    bottom: 20px;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    text-shadow: 2px 2px 5px black;
+}
+
+
+/* Hover */
+
+.hero-card:hover {
+    transform: translateY(-6px);
+}
+
+.hero-card:hover img {
+    transform: scale(1.08);
+}
+
+.hero-card:hover::after {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 900px) {
+    .hero { min-height: 820px; height: auto; }
+    .hero-content { top: 16%; left: 7%; width: 86%; }
+    .hero-cards { bottom: 45px; grid-template-columns: repeat(2, 1fr); }
+    .hero-card { height: 175px; }
+}
+
+@media (max-width: 768px) {
+    .hero { min-height: 780px; }
+    .hero-content { top: 9%; }
+    .hero h1 { font-size: 44px; }
+    .hero p { font-size: 16px; }
+    .hero-cards { width: 86%; gap: 14px; }
+    .hero-card { height: 160px; }
+}
+
+@media (max-width: 520px) {
+    .hero { min-height: 990px; }
+    .hero-content { top: 6%; }
+    .hero-cards { grid-template-columns: 1fr; }
+    .hero-card { height: 145px; }
+}
+
+/* Two-section home layout */
+.hero {
+    min-height: 80vh;
+    height: 80vh;
+    overflow: hidden;
+    background: #1d2a32;
+}
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(17,30,37,.84), rgba(17,30,37,.3)); }
+.hero-content { top: 34%; }
+.home-destinations { padding: 95px 5% 110px; background: #f8f5f0; }
+.home-destinations-heading { width: min(760px, 90%); margin: 0 auto 48px; text-align: center; }
+.home-destinations-heading > p { margin: 0 0 14px; color: #9b7652; font-size: 12px; font-weight: 800; letter-spacing: 3px; }
+.home-destinations-heading h2 { margin: 0; color: #26394a; font-family: Georgia, "Times New Roman", serif; font-size: 44px; font-weight: normal; line-height: 1.15; }
+.home-destinations .hero-cards { position: static; width: min(1400px, 100%); margin: 0 auto; grid-template-columns: repeat(5, 1fr); }
+
+@media (max-width: 900px) {
+    .hero { min-height: 80vh; height: 80vh; }
+    .hero-content { top: 28%; }
+    .home-destinations .hero-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .hero { min-height: 80vh; height: 80vh; }
+    .hero-content { top: 24%; }
+    .home-destinations { padding: 70px 7% 80px; }
+    .home-destinations-heading h2 { font-size: 37px; }
+}
+
+@media (max-width: 520px) {
+    .hero { min-height: 80vh; height: 80vh; }
+    .hero-content { top: 18%; }
+    .home-destinations .hero-cards { grid-template-columns: 1fr; }
+}
