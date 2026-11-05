@@ -66,10 +66,10 @@ a { color:inherit; }
 
 .service-detail-page .service-intro { padding:72px max(32px,calc((100% - 1240px)/2)); grid-template-columns:220px minmax(0,1fr); gap:64px; color:#fff; background:#0b1d2c; }
 .service-detail-page .service-intro .section-label { color:#d6ae32; }
-.service-detail-page .intro-copy>p { max-width:800px; margin-bottom:30px; color:#c2cdd5; font-size:17px; }
+.service-detail-page .intro-copy>p { max-width:800px; margin-bottom:34px; color:#c2cdd5; font-size:20px; line-height:1.75; }
 .service-detail-page .benefit-list { gap:0 30px; border-top-color:rgba(255,255,255,.16); }
-.service-detail-page .benefit-list li { min-height:62px; padding:17px 0 17px 20px; color:#f2f5f7; border-bottom-color:rgba(255,255,255,.16); }
-.service-detail-page .benefit-list li::before { content:""; width:6px; height:6px; top:24px; background:var(--vs-yellow); border-radius:50%; }
+.service-detail-page .benefit-list li { min-height:70px; padding:20px 0 20px 22px; color:#f2f5f7; border-bottom-color:rgba(255,255,255,.16); font-size:16px; line-height:1.5; }
+.service-detail-page .benefit-list li::before { content:""; width:6px; height:6px; top:29px; background:var(--vs-yellow); border-radius:50%; }
 .guarding-service-page .benefit-list li::before { background:#55c7ef; box-shadow:0 0 10px rgba(85,199,239,.42); }
 .work-evidence { padding:82px max(32px,calc((100% - 1240px)/2)); color:#fff; background:#102b40; }
 .work-evidence-head { max-width:760px; }
