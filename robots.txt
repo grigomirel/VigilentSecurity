@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hotelrestaurantelite.ro/sitemap.xml
-

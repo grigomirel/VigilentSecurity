@@ -1,0 +1,126 @@
+.vs-footer {
+    width: 100%;
+    color: #d5dde4;
+    background: #03080d;
+    border-top: 5px solid #f5c638;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.vs-footer a { color: inherit; text-decoration: none; }
+
+.vs-footer-grid {
+    width: 100%;
+    min-height: 390px;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr .85fr;
+}
+
+.vs-footer-column {
+    padding: clamp(48px, 5vw, 82px) clamp(28px, 4vw, 72px);
+    border-right: 1px solid rgba(255,255,255,.09);
+}
+
+.vs-footer-column:last-child { border-right: 0; }
+.vs-footer-technical { background: #080a0c; }
+.vs-footer-guarding { background: #092b4a; }
+.vs-footer-company { background: #061a2b; }
+
+.vs-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    color: #fff;
+}
+
+.vs-footer-mark {
+    width: 53px;
+    height: 70px;
+    flex: 0 0 53px;
+    display: block;
+    background: url('../images/Vigilent/vigilent-security-logo.png') center/contain no-repeat;
+    font-size: 0;
+}
+
+.vs-footer-brand strong { display: block; font-size: 21px; letter-spacing: .08em; }
+.vs-footer-brand small { display: block; margin-top: 4px; color: #f5c638; font-size: 9px; font-weight: 800; letter-spacing: .2em; }
+.vs-footer-intro { max-width: 360px; margin: 28px 0 0; color: #9eabb5; font-size: 14px; line-height: 1.75; }
+.vs-footer-stat { margin-top: 34px; color: #fff; font-size: 13px; font-weight: 700; }
+.vs-footer-stat strong { margin-right: 8px; color: #f5c638; font-size: 30px; }
+
+.vs-footer-title {
+    margin: 0 0 26px;
+    color: #f5c638;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+
+.vs-footer-links { margin: 0; padding: 0; display: grid; gap: 15px; list-style: none; }
+.vs-footer-links a { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1.35; transition: color .2s, transform .2s; }
+.vs-footer-links a::before { content: ""; width: 12px; height: 2px; flex: 0 0 auto; background: #f5c638; transform: scaleX(.35); transform-origin: left; transition: transform .2s; }
+.vs-footer-links a:hover { color: #fff; transform: translateX(4px); }
+.vs-footer-links a:hover::before { transform: scaleX(1); }
+
+.vs-footer-contact {
+    margin-top: 32px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    color: #07141f !important;
+    background: #f5c638;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.vs-footer-bottom {
+    min-height: 72px;
+    padding: 22px clamp(28px, 4vw, 72px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: #73818d;
+    background: #020508;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-size: 11px;
+}
+.vs-footer-bottom a { color: #bac4cc; }
+
+@media (max-width: 1050px) {
+    .vs-footer-grid { grid-template-columns: 1fr 1fr; }
+    .vs-footer-column { min-height: 330px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .vs-footer-column:nth-child(2) { border-right: 0; }
+}
+
+@media (max-width: 640px) {
+    .vs-footer-grid { display: block; }
+    .vs-footer-column { min-height: 0; padding: 46px 24px; border-right: 0; }
+    .vs-footer-bottom { padding: 22px 24px; align-items: flex-start; flex-direction: column; }
+}
+
+/* Compact shared footer */
+.vs-footer { border-top: 2px solid #f5c638; }
+.vs-footer-compact { min-height: 154px; padding: 28px max(28px,calc((100% - 1320px)/2)); display:grid; grid-template-columns:auto minmax(260px,1fr) auto; align-items:center; gap:38px; background:radial-gradient(circle at 18% 50%,rgba(85,199,239,.09),transparent 22%),#050d14; }
+.vs-footer-identities { display:flex; align-items:center; gap:20px; }
+.vs-footer-identities a { display:block; transition:opacity .2s ease,transform .2s ease; }
+.vs-footer-identities a:hover,.vs-footer-identities a:focus-visible { opacity:.9; transform:translateY(-2px); outline:0; }
+.vs-footer-identities img { width:auto; height:66px; display:block; object-fit:contain; }
+.vs-footer-identities a:first-child img { max-width:116px; }
+.vs-footer-identities span { width:1px; height:52px; background:rgba(255,255,255,.18); }
+.vs-footer-message { max-width:380px; margin:0; color:#f1f4f6; font-size:clamp(16px,1.4vw,21px); font-weight:800; letter-spacing:-.025em; line-height:1.3; }
+.vs-footer-contact-details { max-width:470px; margin:0; display:grid; gap:7px; color:#8e9ca8; font-size:11px; font-style:normal; line-height:1.4; }
+.vs-footer-contact-details strong { color:#f1f4f6; font-size:17px; letter-spacing:-.02em; }
+.vs-footer-contact-details>span:last-child { display:flex; flex-wrap:wrap; gap:8px 18px; }
+.vs-footer-contact-details a { color:#b8c5ce; transition:color .2s ease; }
+.vs-footer-contact-details a:hover,.vs-footer-contact-details a:focus-visible { color:#55c7ef; outline:0; }
+.vs-footer-essential { display:flex; align-items:center; justify-content:flex-end; gap:24px; }
+.vs-footer-essential a { color:#9fadb8; font-size:12px; font-weight:800; white-space:nowrap; transition:color .2s ease; }
+.vs-footer-essential a:hover,.vs-footer-essential a:focus-visible { color:#55c7ef; outline:0; }
+.vs-footer-legal { min-height:48px; padding:14px max(28px,calc((100% - 1320px)/2)); display:flex; align-items:center; justify-content:space-between; gap:24px; color:#73818d; background:#020508; border-top:1px solid rgba(255,255,255,.08); font-size:10px; }
+.vs-footer-legal a { color:#9fadb8; }
+@media(max-width:900px){.vs-footer-compact{grid-template-columns:auto 1fr;gap:20px 30px}.vs-footer-essential{grid-column:1/-1;justify-content:flex-start;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}}
+@media(max-width:600px){.vs-footer-compact{padding:30px 20px;display:flex;align-items:flex-start;flex-direction:column;gap:22px}.vs-footer-identities img{height:58px}.vs-footer-essential{width:100%;padding-top:18px;justify-content:space-between;gap:14px}.vs-footer-legal{padding:14px 20px;align-items:flex-start;flex-direction:column;gap:7px}}
