@@ -1,5 +1,13 @@
 (function () {
     var isEnglish = document.documentElement.lang === 'en';
+    // Absolute root links are correct on the hosted domain, but under file://
+    // they point to the root of the local drive (for example D:\). Keep the
+    // production URL clean while making direct local previews work normally.
+    if (window.location.protocol === 'file:') {
+        document.querySelectorAll('a[href="/"]').forEach(function (link) {
+            link.setAttribute('href', 'index.html');
+        });
+    }
     // Send every technical-service menu item straight to its complete service page.
     // Keeping this mapping here also updates older page headers without duplicating
     // navigation edits across every static HTML file.
@@ -21,6 +29,7 @@
     var actions = document.querySelector('.vs-actions');
     if (actions) {
         var currentPage = window.location.pathname.split('/').pop() || (isEnglish ? 'acasa-en.html' : 'acasa.html');
+        if (currentPage === 'index.html') currentPage = 'acasa.html';
         var romanianPage = currentPage.replace('-en.html', '.html');
         var englishPage = /-en\.html$/.test(currentPage) ? currentPage : currentPage.replace('.html', '-en.html');
         var language = document.createElement('div');
@@ -127,7 +136,7 @@
         }
     }
 
-    var fieldImages = Array.prototype.slice.call(document.querySelectorAll('.work-evidence img'));
+    var fieldImages = Array.prototype.slice.call(document.querySelectorAll('.work-evidence img, .certification-document img'));
     if (fieldImages.length) {
         var lightbox = document.createElement('div');
         lightbox.className = 'vs-lightbox';
@@ -143,7 +152,9 @@
             activeImage = (index + fieldImages.length) % fieldImages.length;
             enlargedImage.src = fieldImages[activeImage].src;
             enlargedImage.alt = fieldImages[activeImage].alt;
-            enlargedCaption.textContent = fieldImages[activeImage].alt;
+            var card = fieldImages[activeImage].closest('.certification-document');
+            var cardTitle = card && card.querySelector('h3');
+            enlargedCaption.textContent = cardTitle ? cardTitle.textContent : fieldImages[activeImage].alt;
         }
         function openFieldImage(index) {
             previousFocus = document.activeElement;
@@ -160,12 +171,13 @@
             if (previousFocus) previousFocus.focus();
         }
         fieldImages.forEach(function (image, index) {
-            var figure = image.closest('figure');
-            figure.tabIndex = 0;
-            figure.setAttribute('role', 'button');
-            figure.setAttribute('aria-label', 'Mărește: ' + image.alt);
-            figure.addEventListener('click', function () { openFieldImage(index); });
-            figure.addEventListener('keydown', function (event) {
+            var trigger = image.closest('figure') || image.closest('a');
+            if (!trigger) return;
+            if (trigger.tagName !== 'A') trigger.tabIndex = 0;
+            trigger.setAttribute('role', 'button');
+            trigger.setAttribute('aria-label', (isEnglish ? 'Enlarge: ' : 'Mărește: ') + image.alt);
+            trigger.addEventListener('click', function (event) { event.preventDefault(); openFieldImage(index); });
+            trigger.addEventListener('keydown', function (event) {
                 if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openFieldImage(index); }
             });
         });
@@ -199,12 +211,14 @@
     toggle.addEventListener('click', function () {
         var isOpen = menu.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('vs-menu-open', isOpen);
     });
 
     menu.addEventListener('click', function (event) {
         if (event.target.closest('a')) {
             menu.classList.remove('open');
             toggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('vs-menu-open');
         }
     });
 

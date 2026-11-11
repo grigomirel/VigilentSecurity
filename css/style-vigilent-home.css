@@ -42,13 +42,13 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .division li a:hover::after { opacity:1; transform:translateX(0); }
 .division-link { display:inline-flex; align-items:center; padding:12px 16px; border:1px solid rgba(245,198,56,.76); background:rgba(4,11,18,.28); transition:background .22s ease,color .22s ease; }
 .division-link:hover { color:#07141f; background:var(--yellow); text-shadow:none; }
-.division-tech { background:linear-gradient(90deg,rgba(3,8,12,.96) 0%,rgba(3,8,12,.78) 42%,rgba(3,8,12,.24) 100%),url('../images/Vigilent/services-technical-v2.png') center/cover no-repeat; }
-.division-guard { background:linear-gradient(90deg,rgba(4,18,31,.96) 0%,rgba(4,18,31,.76) 42%,rgba(4,18,31,.2) 100%),url('../images/Vigilent/services-guarding-v2.png') center/cover no-repeat; }
+.division-tech { background:linear-gradient(90deg,rgba(3,8,12,.96) 0%,rgba(3,8,12,.78) 42%,rgba(3,8,12,.24) 100%),url('../images/Vigilent/services-technical-v2.webp') center/cover no-repeat; }
+.division-guard { background:linear-gradient(90deg,rgba(4,18,31,.96) 0%,rgba(4,18,31,.76) 42%,rgba(4,18,31,.2) 100%),url('../images/Vigilent/services-guarding-v2.webp') center/cover no-repeat; }
 .solution-builder[hidden] { display:none; }
 .divisions[hidden] { display:none; }
 .section-divider { height:3px; position:relative; z-index:10; overflow:hidden; background:rgba(255,255,255,.12); }.section-divider::before { content:""; position:absolute; inset:1px 0 auto; height:1px; background:linear-gradient(90deg,transparent,rgba(62,64,149,.8) 16%,rgba(245,198,56,.32) 42%,rgba(85,199,239,.28) 72%,rgba(62,64,149,.72) 88%,transparent); }.section-divider span,.section-divider i { height:3px; position:absolute; top:0; display:block; }.section-divider span { left:8%; width:clamp(70px,9vw,150px); background:var(--yellow); }.section-divider i { left:calc(8% + clamp(80px,10vw,165px)); width:clamp(28px,4vw,66px); background:var(--violet); box-shadow:0 0 15px rgba(143,146,238,.55); }.section-divider-reverse span { left:auto; right:8%; }.section-divider-reverse i { left:auto; right:calc(8% + clamp(80px,10vw,165px)); }
 .services-overview { position:relative; overflow:hidden; color:#fff; background:#07141f; isolation:isolate; }
-.services-overview::before,.services-overview::after { content:""; position:absolute; inset:0 50% 0 0; z-index:-2; background:url('../images/Vigilent/services-technical-v2.png') center/cover no-repeat; opacity:.2; }.services-overview::after { inset:0 0 0 50%; background-image:url('../images/Vigilent/services-guarding-v2.png'); }.services-overview-inner::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(3,10,16,.9),rgba(7,20,31,.78) 50%,rgba(4,19,32,.88)),linear-gradient(0deg,#07141f 0,transparent 28%,transparent 72%,#07141f 100%); }
+.services-overview::before,.services-overview::after { content:""; position:absolute; inset:0 50% 0 0; z-index:-2; background:url('../images/Vigilent/services-technical-v2.webp') center/cover no-repeat; opacity:.2; }.services-overview::after { inset:0 0 0 50%; background-image:url('../images/Vigilent/services-guarding-v2.webp'); }.services-overview-inner::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(3,10,16,.9),rgba(7,20,31,.78) 50%,rgba(4,19,32,.88)),linear-gradient(0deg,#07141f 0,transparent 28%,transparent 72%,#07141f 100%); }
 .services-overview-inner { width:100%; margin:0; padding:76px 0 82px; position:relative; }
 .services-overview-heading { width:min(1400px,calc(100% - 96px)); margin:0 auto 34px; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr); align-items:end; gap:clamp(48px,6vw,96px); }.services-overview-heading .eyebrow { margin-bottom:14px; color:#cbd5dd; }.services-overview-heading h2 { font-size:clamp(46px,5vw,76px); line-height:.9; }.services-overview-heading h2 span { color:var(--yellow); }.services-overview-heading>p { max-width:480px; margin:0; color:#b6c2cb; font-size:14px; line-height:1.65; }
 .services-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
@@ -59,8 +59,8 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .service-group-tech { border-top:3px solid var(--yellow); }
 .service-group-guard { border-top:3px solid #55c7ef; }
 .service-group-media { height:250px; position:relative; overflow:hidden; display:flex; align-items:flex-end; background-position:center; background-size:cover; isolation:isolate; }
-.service-group-tech .service-group-media { background-image:url('../images/Vigilent/services-technical-v2.png'); }
-.service-group-guard .service-group-media { background-image:url('../images/Vigilent/services-guarding-v2.png'); }
+.service-group-tech .service-group-media { background-image:url('../images/Vigilent/services-technical-v2.webp'); }
+.service-group-guard .service-group-media { background-image:url('../images/Vigilent/services-guarding-v2.webp'); }
 .service-group-media::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(2,9,15,.96) 0%,rgba(2,9,15,.72) 48%,rgba(2,9,15,.1) 100%),linear-gradient(0deg,rgba(2,9,15,.88),transparent 65%); }
 .service-group-guard .service-group-media::before { background:linear-gradient(90deg,rgba(3,17,29,.96) 0%,rgba(3,17,29,.74) 48%,rgba(3,17,29,.12) 100%),linear-gradient(0deg,rgba(3,17,29,.88),transparent 65%); }
 .service-group-media::after { content:""; width:28%; height:1px; position:absolute; top:0; left:-30%; background:linear-gradient(90deg,transparent,var(--yellow),transparent); box-shadow:0 0 14px rgba(245,198,56,.55); animation:service-scan 7s ease-in-out infinite; }
@@ -90,16 +90,18 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .service-group-grid .service-overview-card:hover { transform:none; border-color:transparent; }
 .service-index { position:absolute; z-index:2; top:26px; right:25px; color:rgba(255,255,255,.34); font-size:11px; font-weight:900; letter-spacing:.12em; }
 .service-group-guard .service-overview-card:hover a,.service-group-guard .service-overview-card a:focus-visible { color:#061524; background:#55c7ef; border-color:#55c7ef; }
-.service-card-monitoring { --service-image:url('../images/Vigilent/service-cards/monitoring.png'); }
-.service-card-alarm { --service-image:url('../images/Vigilent/service-cards/alarm.png'); }
-.service-card-access { --service-image:url('../images/Vigilent/service-cards/access-control.png'); }
-.service-card-fire { --service-image:url('../images/Vigilent/service-cards/fire-detection.png'); }
-.service-card-barrier { --service-image:url('../images/Vigilent/service-cards/barrier.png'); }
-.service-card-intervention { --service-image:url('../images/Vigilent/service-cards/intervention.png'); }
-.service-card-agent { --service-image:url('../images/Vigilent/service-cards/security-agent.png'); }
-.service-card-site { --service-image:url('../images/Vigilent/service-cards/site-guarding.png'); }
-.service-card-event { --service-image:url('../images/Vigilent/service-cards/event-security.png'); }
-.service-card-plan { --service-image:url('../images/Vigilent/service-cards/security-plan.png'); }
+.service-card-monitoring { --service-image:url('../images/Vigilent/service-cards/monitoring.webp'); }
+.service-card-alarm { --service-image:url('../images/Vigilent/service-cards/alarm.webp'); }
+.service-card-access { --service-image:url('../images/Vigilent/service-cards/access-control.webp'); }
+.service-card-fire { --service-image:url('../images/Vigilent/service-cards/fire-detection.webp'); }
+.service-card-barrier { --service-image:url('../images/Vigilent/service-cards/barrier.webp'); }
+.service-card-intervention { --service-image:url('../images/Vigilent/service-cards/intervention.webp'); }
+.service-card-transport { --service-image:url('../images/Vigilent/service-cards/intervention.webp'); }
+.service-card-agent { --service-image:url('../images/Vigilent/service-cards/security-agent.webp'); }
+.service-card-site { --service-image:url('../images/Vigilent/service-cards/site-guarding.webp'); }
+.service-card-event { --service-image:url('../images/Vigilent/service-cards/event-security.webp'); }
+.service-card-plan { --service-image:url('../images/Vigilent/service-cards/security-plan.webp'); }
+.service-card-bodyguard { --service-image:url('../images/Vigilent/service-cards/security-agent.webp'); }
 @media(max-width:1200px){.services-overview-inner{width:100%}.services-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.services-overview-inner{width:100%;padding:58px 0}.services-overview-heading{width:calc(100% - 40px);grid-template-columns:1fr;gap:18px}.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.services-offer{padding:24px 20px;align-items:stretch;flex-direction:column}.services-offer a{text-align:center}}
 @media(max-width:480px){.services-grid{grid-template-columns:1fr}.service-overview-card{min-height:170px}}
@@ -389,3 +391,22 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .step-design { --step-color:#55c7ef; }.step-implement { --step-color:#8f92ee; }.step-support { --step-color:#72e296; }
 @media(max-width:900px){.home-process-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.home-process{padding:76px 20px}.home-process-grid{margin-top:42px;grid-template-columns:1fr}.home-process-step{min-height:210px}}
+
+/* City anchors use the same 1000 x 704 coordinate space as romania-map.svg. */
+.hero-map .map-pin { transform:translate(12px,-50%); padding-left:9px; }
+.hero-map .map-pin::before { left:-15px; background:#05080b; box-shadow:0 0 0 5px rgba(5,8,11,.42); animation:hero-pin-pulse 2s infinite; }
+.hero-map .pin-bucharest { left:60.88%; top:80.43%; }
+.hero-map .pin-cluj { left:37.05%; top:34.62%; }
+.hero-map .pin-iasi { left:75.29%; top:27.05%; }
+.hero-map .pin-timisoara { left:13.83%; top:54.59%; }
+.hero-map .pin-drobeta { left:27.78%; top:76.32%; }
+.hero-map .pin-constanta { left:85.23%; top:85.65%; }
+
+@media(max-width:700px) {
+    .hero-map .map-pin { transform:translate(10px,-50%); padding-left:7px; }
+    .hero-map .map-pin::before { left:-12.5px; }
+}
+
+@keyframes hero-pin-pulse {
+    50% { box-shadow:0 0 0 10px rgba(5,8,11,0); }
+}

@@ -1,0 +1,23 @@
+source_domain,source_path,target,status,reason
+vigilentsecuritytehnic.ro,/,https://vigilent-security.ro/,301,domain migration
+vigilentsecuritytehnic.ro,/contact/,https://vigilent-security.ro/contact.html,301,direct equivalent
+vigilentsecuritytehnic.ro,/despre-noi/,https://vigilent-security.ro/despre-noi.html,301,direct equivalent
+vigilentsecuritytehnic.ro,/identitate/,https://vigilent-security.ro/despre-noi.html,301,consolidated company content
+vigilentsecuritytehnic.ro,/misiune-viziune-scop-valoare/,https://vigilent-security.ro/despre-noi.html,301,consolidated company content
+vigilentsecuritytehnic.ro,/codul-deontologic/,https://vigilent-security.ro/despre-noi.html,301,consolidated company content
+vigilentsecuritytehnic.ro,/licente-si-autorizatii/,https://vigilent-security.ro/despre-noi.html#certificari,301,certifications section
+vigilentsecuritytehnic.ro,/licente-de-functionare/,https://vigilent-security.ro/despre-noi.html#certificari,301,certifications section
+vigilentsecuritytehnic.ro,/certificari-de-calitate/,https://vigilent-security.ro/despre-noi.html#certificari,301,certifications section
+vigilentsecuritytehnic.ro,/reglementari-licente/,https://vigilent-security.ro/despre-noi.html#certificari,301,certifications section
+vigilentsecuritytehnic.ro,/comercializare-si-instalare-sisteme-de-alarma/,https://vigilent-security.ro/sisteme-de-alarma.html,301,direct equivalent
+vigilentsecuritytehnic.ro,/serviciul-de-monitorizare-si-interventie-rapida/,https://vigilent-security.ro/monitorizare.html,301,closest consolidated service
+vigilentsecuritytehnic.ro,/serviciul-de-paza-umana/,https://vigilent-security.ro/paza-umana.html,301,direct equivalent
+vigilentsecuritytehnic.ro,/serviciul-de-securizare-evenimente/,https://vigilent-security.ro/securitate-evenimente.html,301,direct equivalent
+vigilentsecuritytehnic.ro,/serviciul-de-consultanta-de-securitate/,https://vigilent-security.ro/plan-securitate.html,301,closest consolidated service
+vigilentsecuritytehnic.ro,/parcul-auto-moto/,https://vigilent-security.ro/grupuri-de-interventie.html,301,closest relevant content
+vigilentsecuritytehnic.ro,/portofoliu-2/,https://vigilent-security.ro/despre-noi.html,301,consolidated company content
+vigilentsecuritytehnic.ro,/centrul-de-instruire-si-perfectionare/,,review,no equivalent page; confirm whether service is discontinued
+vigilentsecuritytehnic.ro,/serviciul-de-garda-de-corp/,https://vigilent-security.ro/bodyguard.html,301,dedicated bodyguard service page
+vigilentsecuritytehnic.ro,/serviciul-de-paza-a-transporturilor-de-bunuri-si-valori/,https://vigilent-security.ro/transport-valori.html,301,dedicated valuables transport page
+both legacy sitemaps,/?p=<number>,,410,compromised sitemap spam
+both legacy sitemaps,/<generated>/<generated>.ever,,410,compromised sitemap spam

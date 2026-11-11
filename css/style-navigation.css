@@ -27,3 +27,17 @@
 .vs-menu-toggle { display:none; width:44px; height:44px; padding:0; color:#fff; background:transparent; border:0; cursor:pointer; }.vs-menu-toggle span:not(.sr-only) { width:26px; height:2px; margin:5px auto; display:block; background:currentColor; }
 @media(max-width:1150px){.vs-nav{grid-template-columns:190px 1fr 210px}.vs-links{gap:3px}.vs-main-link{padding:0 8px;font-size:12px}.vs-dropdown-toggle{padding:0 9px;font-size:12px}.vs-panel{width:min(850px,calc(100vw - 40px))}}
 @media(max-width:760px){.vs-header{inset:8px 8px auto;width:auto;background:#07141f}.vs-nav{width:calc(100% - 24px);height:74px;display:flex}.vs-brand-mark{width:38px;height:51px;flex-basis:38px}.vs-brand-name{font-size:17px}.vs-menu-toggle{margin-left:auto;display:block;position:relative;z-index:4;flex:0 0 44px}.vs-links{position:absolute;top:74px;left:0;width:100%;max-height:calc(100vh - 74px);padding:82px 18px 22px;display:none;align-items:stretch;flex-direction:column;overflow:auto;background:#07141f}.vs-links.open{display:flex}.vs-main-link{width:100%;min-height:48px;padding:0 4px;font-size:14px}.vs-dropdown{height:auto;display:block}.vs-dropdown-toggle{width:100%;min-height:52px;padding:0 4px;justify-content:space-between;font-size:15px}.vs-panel,.vs-panel-paza{position:static;width:100%;max-height:0;padding:0;display:block;overflow:hidden;border:0;border-radius:12px;box-shadow:none;opacity:1;visibility:visible;transform:none;transition:max-height .35s,margin .35s}.vs-dropdown.open .vs-panel{max-height:900px;margin:4px 0 10px;transform:none}.vs-panel-intro{display:none}.vs-panel-grid{padding:7px 10px;display:block}.vs-panel-link{min-height:68px}.vs-actions{display:none}.vs-links.open + .vs-actions{position:absolute;z-index:3;top:86px;left:18px;right:18px;display:flex}.vs-language{flex:0 0 68px}.vs-language-toggle{width:100%;min-height:50px}.vs-language-menu{right:auto;left:0}.vs-contact{flex:1;display:flex;text-align:center}}
+
+/* Mobile navigation is a scrollable panel; reset the desktop link-row height. */
+@media(max-width:760px){
+    body.vs-menu-open{overflow:hidden}
+    .vs-links{height:auto;min-height:calc(100dvh - 94px);max-height:calc(100dvh - 94px);padding:78px 18px 28px;justify-content:flex-start;overscroll-behavior:contain;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 26px 44px rgba(0,0,0,.42)}
+    .vs-main-link,.vs-dropdown-toggle{border-bottom:1px solid rgba(255,255,255,.1)}
+    .vs-main-link{min-height:54px}
+    .vs-dropdown-toggle{min-height:58px}
+    .vs-links.open + .vs-actions{top:86px;left:18px;right:18px;padding-bottom:12px;background:#07141f;border-bottom:1px solid rgba(255,255,255,.12)}
+    .vs-menu-toggle span:not(.sr-only){transition:transform .22s ease,opacity .18s ease}
+    body.vs-menu-open .vs-menu-toggle span:nth-child(2){transform:translateY(7px) rotate(45deg)}
+    body.vs-menu-open .vs-menu-toggle span:nth-child(3){opacity:0}
+    body.vs-menu-open .vs-menu-toggle span:nth-child(4){transform:translateY(-7px) rotate(-45deg)}
+}

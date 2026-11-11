@@ -1,0 +1,27 @@
+RewriteEngine On
+
+# Install this file on the vigilentsecuritytehnic.ro host, not on the new site.
+# Both HTTP and HTTPS, plus www and non-www, must reach this configuration.
+
+# Do not pass hacked sitemap URLs to the new domain.
+RewriteCond %{QUERY_STRING} ^p=\d+$ [NC]
+RewriteRule ^ - [G,L]
+RewriteRule ^[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+\.ever$ - [G,L,NC]
+
+# Genuine pages with a close replacement on the modern site.
+RewriteRule ^$ https://vigilent-security.ro/ [R=301,L]
+RewriteRule ^contact/?$ https://vigilent-security.ro/contact.html [R=301,L,NC]
+RewriteRule ^(?:despre-noi|identitate|misiune-viziune-scop-valoare|codul-deontologic)/?$ https://vigilent-security.ro/despre-noi.html [R=301,L,NC]
+RewriteRule ^(?:licente-si-autorizatii|licente-de-functionare|certificari-de-calitate|reglementari-licente)/?$ https://vigilent-security.ro/despre-noi.html#certificari [R=301,NE,L,NC]
+RewriteRule ^comercializare-si-instalare-sisteme-de-alarma/?$ https://vigilent-security.ro/sisteme-de-alarma.html [R=301,L,NC]
+RewriteRule ^serviciul-de-monitorizare-si-interventie-rapida/?$ https://vigilent-security.ro/monitorizare.html [R=301,L,NC]
+RewriteRule ^serviciul-de-paza-umana/?$ https://vigilent-security.ro/paza-umana.html [R=301,L,NC]
+RewriteRule ^serviciul-de-securizare-evenimente/?$ https://vigilent-security.ro/securitate-evenimente.html [R=301,L,NC]
+RewriteRule ^serviciul-de-consultanta-de-securitate/?$ https://vigilent-security.ro/plan-securitate.html [R=301,L,NC]
+RewriteRule ^parcul-auto-moto/?$ https://vigilent-security.ro/grupuri-de-interventie.html [R=301,L,NC]
+RewriteRule ^portofoliu-2/?$ https://vigilent-security.ro/despre-noi.html [R=301,L,NC]
+RewriteRule ^serviciul-de-paza-a-transporturilor-de-bunuri-si-valori/?$ https://vigilent-security.ro/transport-valori.html [R=301,L,NC]
+RewriteRule ^serviciul-de-garda-de-corp/?$ https://vigilent-security.ro/bodyguard.html [R=301,L,NC]
+
+# Keep other removed URLs as 404 until the business status of the old service is
+# confirmed. Do not add a blanket redirect to the homepage.

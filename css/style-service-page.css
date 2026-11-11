@@ -9,6 +9,7 @@ a { color:inherit; }
 .service-hero { min-height:720px; position:relative; display:flex; align-items:flex-end; overflow:hidden; isolation:isolate; color:#fff; background-position:center; background-size:cover; }
 .service-hero::before { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(90deg,rgba(3,12,20,.96),rgba(3,12,20,.69) 48%,rgba(3,12,20,.18)),linear-gradient(0deg,rgba(3,12,20,.72),transparent 55%); }
 .service-hero::after { content:""; position:absolute; inset:0; z-index:-1; opacity:.18; background-image:linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px); background-size:74px 74px; mask-image:linear-gradient(90deg,#000,transparent 72%); }
+.about-hero { background-image:url('../images/Vigilent/projects/intervention-fleet.jpg'); background-position:center 58%; }
 .service-hero-inner { width:min(1320px,calc(100% - 64px)); margin:0 auto 84px; display:grid; grid-template-columns:minmax(0,1fr); align-items:end; gap:60px; }
 .service-kicker { margin:0 0 20px; display:flex; align-items:center; gap:10px; color:#e6ebef; font-size:11px; font-weight:800; letter-spacing:.17em; text-transform:uppercase; }.service-kicker::before { content:""; width:30px; height:2px; background:var(--vs-yellow); }
 .service-hero h1 { max-width:850px; margin:0; font-size:clamp(58px,7.8vw,118px); font-weight:900; letter-spacing:-.065em; line-height:.86; }.service-hero h1 em { color:var(--vs-yellow); font-style:normal; }
@@ -32,8 +33,35 @@ a { color:inherit; }
 .service-cta { padding:90px max(32px,calc((100% - 1240px)/2)); display:flex; align-items:center; justify-content:space-between; gap:50px; color:#fff; background:var(--vs-navy); }.service-cta h2 { max-width:780px; }.service-cta a { flex:0 0 auto; padding:18px 24px; color:var(--vs-ink); background:var(--vs-yellow); font-size:12px; font-weight:900; letter-spacing:.04em; text-decoration:none; text-transform:uppercase; }.service-footer { padding:28px 32px; display:flex; justify-content:space-between; color:#9eabb5; background:#040d14; font-size:11px; }.service-footer a { color:#fff; text-decoration:none; }
 .about-stats { padding:0 max(32px,calc((100% - 1240px)/2)) 110px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; background:#fff; }.about-stat { padding:34px; border:1px solid var(--vs-line); }.about-stat strong { display:block; color:var(--vs-navy); font-size:48px; letter-spacing:-.05em; }.about-stat span { margin-top:8px; display:block; color:#687079; font-size:11px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
 .certifications { padding:110px max(32px,calc((100% - 1240px)/2)); color:#fff; background:var(--vs-ink); }.certification-grid { margin-top:50px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }.certification-card { min-height:220px; padding:30px; border:1px dashed rgba(245,198,56,.52); background:#0c2438; }.certification-card span { color:var(--vs-yellow); font-size:10px; font-weight:900; letter-spacing:.15em; }.certification-card h3 { margin:50px 0 12px; font-size:21px; }.certification-card p { margin:0; color:#aebbc5; font-size:13px; line-height:1.6; }
+.certifications>h2 { max-width:820px; margin:16px 0 0; font-size:clamp(40px,5vw,72px); letter-spacing:-.055em; line-height:.94; }
+.about-page { color:#fff; background:var(--vs-ink); }
+.about-page .service-intro { color:#fff; background:#0b1d2c; }
+.about-page .service-intro .intro-copy>p { color:#c2ced7; }
+.about-page .service-intro .benefit-list { border-color:rgba(255,255,255,.16); }
+.about-page .service-intro .benefit-list li { border-color:rgba(255,255,255,.16); }
+.about-page .about-stats { background:#0b1d2c; }
+.about-page .about-stat { background:#10283c; border-color:rgba(255,255,255,.16); }
+.about-page .about-stat strong { color:var(--vs-yellow); }
+.about-page .about-stat span { color:#b8c5cf; }
+.about-page .certifications { background:#07141f; }
+.about-certifications { padding:110px max(32px,calc((100% - 1240px)/2)); color:#fff; background:#0b1d2c; border-top:1px solid rgba(255,255,255,.1); }
+.about-certifications-copy { max-width:880px; }
+.about-certifications-copy h2 { margin:16px 0 0; font-size:clamp(40px,5vw,72px); letter-spacing:-.055em; line-height:.94; }
+.about-certifications-copy>p:last-child { max-width:650px; margin:25px 0 0; color:#b8c5cf; font-size:16px; line-height:1.7; }
+.certification-documents { margin-top:56px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.certification-document { min-width:0; display:grid; grid-template-columns:210px minmax(0,1fr); background:#10283c; border:1px solid rgba(255,255,255,.15); overflow:hidden; }
+.certification-document>a { height:270px; padding:12px; display:block; background:#e9e7df; overflow:hidden; }
+.certification-document img { width:100%; height:100%; display:block; object-fit:contain; transition:transform .35s ease; }
+.certification-document:hover img,.certification-document a:focus-visible img { transform:scale(1.035); }
+.certification-document>div { padding:28px; align-self:end; }
+.certification-document--archived>div::before { content:attr(data-status); margin-bottom:14px; padding:7px 9px; display:inline-block; color:#ffd9cf; background:rgba(255,114,72,.12); border:1px solid rgba(255,114,72,.42); font-size:9px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.certification-document span { color:var(--vs-yellow); font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+.certification-document h3 { margin:15px 0 10px; font-size:20px; line-height:1.2; }
+.certification-document p { margin:0; color:#aebdc8; font-size:12px; line-height:1.55; }
 @media(max-width:900px){.service-hero-inner{grid-template-columns:1fr}.hero-facts{display:none}.service-intro{grid-template-columns:1fr;gap:35px}.equipment-grid{grid-template-columns:1fr 1fr}.project-grid{grid-template-columns:1fr 1fr}.process-grid{grid-template-columns:1fr 1fr;gap:40px 20px}.about-stats,.certification-grid{grid-template-columns:1fr}.service-cta{align-items:flex-start;flex-direction:column}}
+@media(max-width:1050px){.certification-documents{grid-template-columns:1fr}}
 @media(max-width:600px){.service-hero{min-height:670px}.service-hero-inner{width:calc(100% - 40px);margin-bottom:58px}.service-hero h1{font-size:clamp(48px,16vw,72px)}.service-lead{font-size:15px}.service-intro,.equipment,.project-showcase,.process{padding:78px 20px}.benefit-list,.equipment-grid,.project-grid,.process-grid{grid-template-columns:1fr}.process-grid{gap:38px}.service-cta{padding:70px 20px}.service-footer{align-items:flex-start;flex-direction:column;gap:12px}}
+@media(max-width:600px){.about-page .about-stats,.about-page .certifications,.about-certifications{padding-left:20px;padding-right:20px}.certification-document{grid-template-columns:1fr}.certification-document>a{height:330px}.certification-document--landscape>a{height:235px}.certification-document>div{padding:24px}}
 
 /* Distinct visual identity for every service hero */
 .service-hero { --hero-accent:#f5c638; --hero-glow:rgba(245,198,56,.23); box-shadow:inset 0 6px 0 var(--hero-accent); }
@@ -121,3 +149,9 @@ a { color:inherit; }
 @media(max-width:900px){.service-detail-page .service-intro{grid-template-columns:1fr;gap:24px}.service-detail-page .service-cta{align-items:center;flex-direction:row}}
 @media(max-width:600px){.service-hero{min-height:440px}.service-hero-inner{width:calc(100% - 40px);margin-bottom:38px}.service-hero h1{font-size:clamp(42px,14vw,62px)}.service-detail-page .service-intro,.service-detail-page .equipment,.work-evidence{padding:58px 20px}.work-evidence-grid{grid-template-columns:1fr}.intervention-note{padding:28px 20px;grid-template-columns:1fr;gap:16px}.service-detail-page .service-cta{padding:24px 20px}.service-detail-page .service-cta a{width:100%;text-align:center}}
 @media(max-width:600px){.vs-lightbox{padding:70px 14px 82px}.vs-lightbox-close{top:13px;right:13px}.vs-lightbox-arrow{top:auto;bottom:17px;transform:none}.vs-lightbox-prev{left:calc(50% - 62px)}.vs-lightbox-next{right:calc(50% - 62px)}}
+
+.bodyguard-equipment .equipment-card { min-height:230px; padding:34px 24px 26px; }
+.bodyguard-equipment .equipment-card::after { top:18px; }
+.bodyguard-equipment .equipment-card h3 { max-width:78%; margin:54px 0 12px; }
+.service-intro .legal-reference { margin-top:24px; padding:18px 20px; color:#fff; background:#0b1d2c; border-left:4px solid var(--vs-yellow); font-size:14px; line-height:1.65; }
+.service-intro .legal-reference a { color:#f5c638; font-weight:900; text-decoration-thickness:2px; text-underline-offset:3px; }
