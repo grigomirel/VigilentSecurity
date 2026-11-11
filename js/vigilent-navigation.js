@@ -1,10 +1,9 @@
 (function () {
     var isEnglish = document.documentElement.lang === 'en';
-    // Absolute root links are correct on the hosted domain, but under file://
-    // they point to the root of the local drive (for example D:\). Keep the
-    // production URL clean while making direct local previews work normally.
+    // Relative site-root links work on GitHub Pages and on the custom domain,
+    // but under file:// a directory URL does not reliably load index.html.
     if (window.location.protocol === 'file:') {
-        document.querySelectorAll('a[href="/"]').forEach(function (link) {
+        document.querySelectorAll('a[href="/"],a[href="./"]').forEach(function (link) {
             link.setAttribute('href', 'index.html');
         });
     }
@@ -208,10 +207,36 @@
     var dropdowns = document.querySelectorAll('.vs-dropdown');
     if (!toggle || !menu) return;
 
+    // On mobile the action row belongs inside the scrollable menu. Keeping it
+    // in normal flow prevents Contact and the language selector from covering
+    // service links when the menu or a dropdown grows taller.
+    if (actions) {
+        var actionsHome = document.createComment('navigation actions');
+        actions.parentNode.insertBefore(actionsHome, actions);
+        var mobileNavigation = window.matchMedia('(max-width: 760px)');
+        function placeNavigationActions() {
+            if (mobileNavigation.matches) {
+                if (actions.parentNode !== menu) menu.insertBefore(actions, menu.firstChild);
+            } else if (actions.parentNode === menu && actionsHome.parentNode) {
+                actionsHome.parentNode.insertBefore(actions, actionsHome.nextSibling);
+            }
+        }
+        placeNavigationActions();
+        if (mobileNavigation.addEventListener) mobileNavigation.addEventListener('change', placeNavigationActions);
+        else mobileNavigation.addListener(placeNavigationActions);
+    }
+
     toggle.addEventListener('click', function () {
         var isOpen = menu.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(isOpen));
         document.body.classList.toggle('vs-menu-open', isOpen);
+        if (!isOpen) {
+            var openLanguage = menu.querySelector('.vs-language.open');
+            if (openLanguage) {
+                openLanguage.classList.remove('open');
+                openLanguage.querySelector('.vs-language-toggle').setAttribute('aria-expanded', 'false');
+            }
+        }
     });
 
     menu.addEventListener('click', function (event) {

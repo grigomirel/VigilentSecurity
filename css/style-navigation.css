@@ -31,11 +31,12 @@
 /* Mobile navigation is a scrollable panel; reset the desktop link-row height. */
 @media(max-width:760px){
     body.vs-menu-open{overflow:hidden}
-    .vs-links{height:auto;min-height:calc(100dvh - 94px);max-height:calc(100dvh - 94px);padding:78px 18px 28px;justify-content:flex-start;overscroll-behavior:contain;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 26px 44px rgba(0,0,0,.42)}
+    .vs-links{height:auto;min-height:calc(100dvh - 94px);max-height:calc(100dvh - 94px);padding:18px 18px 28px;justify-content:flex-start;overscroll-behavior:contain;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 26px 44px rgba(0,0,0,.42)}
     .vs-main-link,.vs-dropdown-toggle{border-bottom:1px solid rgba(255,255,255,.1)}
     .vs-main-link{min-height:54px}
     .vs-dropdown-toggle{min-height:58px}
-    .vs-links.open + .vs-actions{top:86px;left:18px;right:18px;padding-bottom:12px;background:#07141f;border-bottom:1px solid rgba(255,255,255,.12)}
+    .vs-links.open>.vs-actions{position:static;z-index:auto;width:100%;padding:0 0 14px;display:flex;flex:0 0 auto;order:-1;background:#07141f;border-bottom:1px solid rgba(255,255,255,.12);transition:padding-bottom .2s ease}
+    .vs-links.open>.vs-actions:has(.vs-language.open),.vs-links.open>.vs-actions:has(.vs-language:focus-within){padding-bottom:112px}
     .vs-menu-toggle span:not(.sr-only){transition:transform .22s ease,opacity .18s ease}
     body.vs-menu-open .vs-menu-toggle span:nth-child(2){transform:translateY(7px) rotate(45deg)}
     body.vs-menu-open .vs-menu-toggle span:nth-child(3){opacity:0}
