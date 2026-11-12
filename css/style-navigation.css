@@ -31,7 +31,10 @@
 /* Mobile navigation is a scrollable panel; reset the desktop link-row height. */
 @media(max-width:760px){
     body.vs-menu-open{overflow:hidden}
-    .vs-links{height:auto;min-height:calc(100dvh - 94px);max-height:calc(100dvh - 94px);padding:18px 18px 28px;justify-content:flex-start;overscroll-behavior:contain;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 26px 44px rgba(0,0,0,.42)}
+    .vs-links{height:auto;min-height:calc(100dvh - 94px);max-height:calc(100dvh - 94px);padding:18px 18px 28px;justify-content:flex-start;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 26px 44px rgba(0,0,0,.42)}
+    .vs-links>.vs-main-link,.vs-links>.vs-dropdown{flex:0 0 auto}
+    .vs-dropdown.open>.vs-panel{max-height:none}
+    .vs-panel-grid{width:100%}
     .vs-main-link,.vs-dropdown-toggle{border-bottom:1px solid rgba(255,255,255,.1)}
     .vs-main-link{min-height:54px}
     .vs-dropdown-toggle{min-height:58px}
