@@ -250,12 +250,17 @@
     dropdowns.forEach(function (dropdown) {
         var dropdownToggle = dropdown.querySelector('.vs-dropdown-toggle');
         function setDropdown(open) {
-            dropdowns.forEach(function (item) {
-                if (item !== dropdown) {
-                    item.classList.remove('open');
-                    item.querySelector('.vs-dropdown-toggle').setAttribute('aria-expanded', 'false');
-                }
-            });
+            // Close sibling menus only when this dropdown is being opened.
+            // Every dropdown owns an outside-click listener; closing an already
+            // closed sibling must not also close the dropdown that was clicked.
+            if (open) {
+                dropdowns.forEach(function (item) {
+                    if (item !== dropdown) {
+                        item.classList.remove('open');
+                        item.querySelector('.vs-dropdown-toggle').setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
             dropdown.classList.toggle('open', open);
             dropdownToggle.setAttribute('aria-expanded', String(open));
         }
