@@ -1,5 +1,6 @@
 (function () {
     var isEnglish = document.documentElement.lang === 'en';
+    var romanianHome = window.location.protocol === 'file:' ? 'index.html' : './';
     // Relative site-root links work on GitHub Pages and on the custom domain,
     // but under file:// a directory URL does not reliably load index.html.
     if (window.location.protocol === 'file:') {
@@ -194,13 +195,58 @@
 
     var siteFooter = document.querySelector('.vs-footer');
     if (siteFooter) {
-        siteFooter.innerHTML = isEnglish ? '<div class="vs-footer-compact"><div class="vs-footer-identities"><a href="acasa-en.html#divizii" aria-label="Vigilent Technical Security services"><img src="images/Vigilent/vigilent-security-tehnic-logo.png" alt="Vigilent Security Tehnic"></a><span aria-hidden="true"></span><a href="acasa-en.html#divizii" aria-label="Vigilent guarding services"><img src="images/Vigilent/vigilent-security-logo.png" alt="Vigilent Security"></a></div><address class="vs-footer-contact-details"><strong>Two specialised companies. Integrated security.</strong><span>76 Adrian Street, Drobeta-Turnu Severin, 220126</span><span><a href="tel:+40252317317">0252 317 317</a><a href="mailto:tehnicvigilent@yahoo.com">tehnicvigilent@yahoo.com</a></span></address><nav class="vs-footer-essential" aria-label="Useful links"><a href="https://www.facebook.com/InterventieVigilent" target="_blank" rel="noopener">Facebook ↗</a><a href="contact-en.html">Contact</a><a href="#" class="vs-back-top">Back to top ↑</a></nav></div><div class="vs-footer-legal"><span>&copy; 2026 Vigilent Security Group. All rights reserved.</span><a href="despre-noi-en.html">About us</a></div>' : '<div class="vs-footer-compact"><div class="vs-footer-identities"><a href="acasa.html#divizii" aria-label="Servicii Vigilent Security Tehnic"><img src="images/Vigilent/vigilent-security-tehnic-logo.png" alt="Vigilent Security Tehnic"></a><span aria-hidden="true"></span><a href="acasa.html#divizii" aria-label="Servicii Vigilent Security Pază"><img src="images/Vigilent/vigilent-security-logo.png" alt="Vigilent Security Pază"></a></div><address class="vs-footer-contact-details"><strong>Două companii specializate. Securitate integrată.</strong><span>Strada Adrian 76, Drobeta-Turnu Severin, 220126</span><span><a href="tel:+40252317317">0252 317 317</a><a href="mailto:tehnicvigilent@yahoo.com">tehnicvigilent@yahoo.com</a></span></address><nav class="vs-footer-essential" aria-label="Linkuri utile"><a href="https://www.facebook.com/InterventieVigilent" target="_blank" rel="noopener">Facebook ↗</a><a href="contact.html">Contact</a><a href="#" class="vs-back-top">Înapoi sus ↑</a></nav></div><div class="vs-footer-legal"><span>&copy; 2026 Vigilent Security Group. Toate drepturile rezervate.</span><a href="despre-noi.html">Despre noi</a></div>';
+        siteFooter.innerHTML = isEnglish ? '<div class="vs-footer-compact"><div class="vs-footer-identities"><a href="acasa-en.html" aria-label="Vigilent Technical Security services"><img src="images/Vigilent/vigilent-security-tehnic-logo.png" alt="Vigilent Security Tehnic"></a><span aria-hidden="true"></span><a href="acasa-en.html" aria-label="Vigilent guarding services"><img src="images/Vigilent/vigilent-security-logo.png" alt="Vigilent Security"></a></div><address class="vs-footer-contact-details"><strong>Two specialised companies. Integrated security.</strong><span>76 Adrian Street, Drobeta-Turnu Severin, 220126</span><span><a href="tel:+40252317317">0252 317 317</a><a href="mailto:vigilentsekurity@yahoo.com">vigilentsekurity@yahoo.com</a></span></address><nav class="vs-footer-essential" aria-label="Useful links"><a href="https://www.facebook.com/InterventieVigilent" target="_blank" rel="noopener">Facebook ↗</a><a href="contact-en.html">Contact</a><a href="#" class="vs-back-top">Back to top ↑</a></nav></div><div class="vs-footer-legal"><span>&copy; 2026 Vigilent Security Group. All rights reserved.</span><a href="despre-noi-en.html">About us</a><a href="#privacy" class="vs-privacy-open">Privacy</a></div>' : '<div class="vs-footer-compact"><div class="vs-footer-identities"><a href="' + romanianHome + '" aria-label="Servicii Vigilent Security Tehnic"><img src="images/Vigilent/vigilent-security-tehnic-logo.png" alt="Vigilent Security Tehnic"></a><span aria-hidden="true"></span><a href="' + romanianHome + '" aria-label="Servicii Vigilent Security Pază"><img src="images/Vigilent/vigilent-security-logo.png" alt="Vigilent Security Pază"></a></div><address class="vs-footer-contact-details"><strong>Două companii specializate. Securitate integrată.</strong><span>Strada Adrian 76, Drobeta-Turnu Severin, 220126</span><span><a href="tel:+40252317317">0252 317 317</a><a href="mailto:vigilentsekurity@yahoo.com">vigilentsekurity@yahoo.com</a></span></address><nav class="vs-footer-essential" aria-label="Linkuri utile"><a href="https://www.facebook.com/InterventieVigilent" target="_blank" rel="noopener">Facebook ↗</a><a href="contact.html">Contact</a><a href="#" class="vs-back-top">Înapoi sus ↑</a></nav></div><div class="vs-footer-legal"><span>&copy; 2026 Vigilent Security Group. Toate drepturile rezervate.</span><a href="despre-noi.html">Despre noi</a><a href="#privacy" class="vs-privacy-open">Confiden&#539;ialitate</a></div>';
         var backTop = siteFooter.querySelector('.vs-back-top');
         backTop.addEventListener('click', function (event) {
             event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
     }
+
+    var privacyDialog = document.createElement('div');
+    privacyDialog.className = 'vs-privacy-dialog';
+    privacyDialog.id = 'privacy';
+    privacyDialog.setAttribute('aria-hidden', 'true');
+    privacyDialog.innerHTML = '<div class="vs-privacy-backdrop" data-privacy-close></div><section class="vs-privacy-panel" role="dialog" aria-modal="true" aria-labelledby="vs-privacy-title" tabindex="-1"><button class="vs-privacy-close" type="button" data-privacy-close aria-label="' + (isEnglish ? 'Close privacy information' : 'Închide informarea') + '">&times;</button>' + (isEnglish ? '<p class="vs-privacy-kicker">Privacy</p><h2 id="vs-privacy-title">How we use your information</h2><p>When you send a request, Vigilent Security uses the contact details and message you provide only to respond, clarify your requirements and prepare an assessment or quotation.</p><ul><li>The message is transmitted through EmailJS and delivered to our email inbox.</li><li>We do not use form information for marketing or sell it.</li><li>We keep correspondence only while it is useful for handling the request and any resulting contractual or legal obligations.</li><li>You may ask us to access, correct or delete your information.</li></ul><p>For privacy questions, contact <a href="mailto:vigilentsekurity@yahoo.com">vigilentsekurity@yahoo.com</a> or <a href="tel:+40252317317">0252 317 317</a>.</p>' : '<p class="vs-privacy-kicker">Confidențialitate</p><h2 id="vs-privacy-title">Cum folosim datele tale</h2><p>Când trimiți o solicitare, Vigilent Security folosește datele de contact și mesajul doar pentru a răspunde, a clarifica cerințele și a pregăti o evaluare sau ofertă.</p><ul><li>Mesajul este transmis prin EmailJS și ajunge în căsuța noastră de email.</li><li>Nu folosim datele formularului pentru marketing și nu le vindem.</li><li>Păstrăm corespondența numai cât este utilă pentru gestionarea solicitării și a eventualelor obligații contractuale sau legale.</li><li>Ne poți cere accesul, corectarea sau ștergerea datelor tale.</li></ul><p>Pentru întrebări despre date, scrie la <a href="mailto:vigilentsekurity@yahoo.com">vigilentsekurity@yahoo.com</a> sau sună la <a href="tel:+40252317317">0252 317 317</a>.</p>') + '</section>';
+    document.body.appendChild(privacyDialog);
+    var privacyPanel = privacyDialog.querySelector('.vs-privacy-panel');
+    var privacyPreviousFocus = null;
+
+    function openPrivacy(event) {
+        if (event) event.preventDefault();
+        privacyPreviousFocus = document.activeElement;
+        privacyDialog.classList.add('open');
+        privacyDialog.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('vs-privacy-opened');
+        privacyPanel.focus();
+    }
+    function closePrivacy() {
+        privacyDialog.classList.remove('open');
+        privacyDialog.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('vs-privacy-opened');
+        if (privacyPreviousFocus) privacyPreviousFocus.focus();
+    }
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('.vs-privacy-open')) openPrivacy(event);
+        if (event.target.closest('[data-privacy-close]')) closePrivacy();
+    });
+    document.addEventListener('keydown', function (event) {
+        if (!privacyDialog.classList.contains('open')) return;
+        if (event.key === 'Escape') closePrivacy();
+        if (event.key === 'Tab') {
+            var privacyFocusable = privacyPanel.querySelectorAll('a[href],button:not([disabled])');
+            var privacyFirst = privacyFocusable[0];
+            var privacyLast = privacyFocusable[privacyFocusable.length - 1];
+            if (event.shiftKey && (document.activeElement === privacyFirst || document.activeElement === privacyPanel)) {
+                event.preventDefault();
+                privacyLast.focus();
+            } else if (!event.shiftKey && document.activeElement === privacyLast) {
+                event.preventDefault();
+                privacyFirst.focus();
+            }
+        }
+    });
 
     var toggle = document.querySelector('.vs-menu-toggle');
     var menu = document.querySelector('.vs-links');

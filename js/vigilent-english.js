@@ -120,8 +120,7 @@
             input.value = serviceNames[i];
             label.replaceChildren(input, document.createTextNode(' ' + serviceNames[i]));
         });
-        text('.privacy span','I agree that the information entered may be used to respond to my request. The data will not be published or sold.');
-        text('#offer-submit span','SEND REQUEST'); text('.form-note','Your information is confidential and will only be used to handle your request.');
+        text('#offer-submit span','SEND REQUEST'); html('.form-note','We use your information only to answer your request. <a href="#privacy" class="vs-privacy-open">How we use your information</a>.');
     }
 
     if (page === 'acasa') {
@@ -129,7 +128,7 @@
         text('.hero .eyebrow','NATIONWIDE SECURITY'); text('.hero-actions a','Request a quote →');
         list('.hero-metrics small',['employees','availability','nationwide coverage']); list('.hero-metrics strong',['650+','24/7','Romania']);
         text('#partners-title','PARTNERS WHO TRUST US'); list('.partner-set span',Array(20).fill('PARTNER LOGO')); html('.hero-status','<span class="pulse"></span> AVAILABLE 24 / 7');
-        list('.hero-map .map-pin',['Bucharest','Cluj-Napoca','Iași','Timișoara','Drobeta-Turnu Severin','Constanța']);
+        list('.hero-map .map-pin',['Bucharest','Cluj-Napoca','Iași','Timișoara','Drobeta-Turnu Severin','Constanța','Brașov','Craiova']);
         text('.solution-builder h2','What do you want to protect?'); text('.services-overview h2','Our services.');
         text('.services-overview-heading .eyebrow','INTEGRATED PROTECTION'); text('.services-overview-heading>p','Technology, monitoring and trained people working together to protect every property.');
         html('#technical-services-title','Technical<br><em>security.</em>'); html('#guard-services-title','Guarding &amp;<br><em>protection.</em>');

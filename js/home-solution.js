@@ -1,6 +1,108 @@
 (function () {
     'use strict';
 
+    var trustBanner = document.querySelector('.trusted-environments');
+    var trustBackdrop = document.querySelector('.trusted-backdrop');
+    var trustClose = document.querySelector('.trusted-close');
+    var sessionKey = 'vigilentTrustBannerDismissed';
+
+    function setSessionDismissed() {
+        try {
+            sessionStorage.setItem(sessionKey, 'true');
+        } catch (error) {
+            // Ignore storage failures gracefully.
+        }
+    }
+
+    function dismissTrustBanner() {
+        if (!trustBanner || !trustBackdrop) return;
+        trustBanner.classList.remove('is-visible');
+        trustBackdrop.classList.remove('is-visible');
+        var hero = document.querySelector('.trust-hero');
+        if (hero) {
+            hero.classList.remove('is-takeover-active');
+        }
+        setSessionDismissed();
+    }
+
+    function showTrustBanner() {
+        if (!trustBanner || !trustBackdrop) return;
+
+        var hero = document.querySelector('.trust-hero');
+        if (!hero) return;
+
+        var rect = hero.getBoundingClientRect();
+        var heroVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!heroVisible) return;
+
+        hero.classList.add('is-takeover-active');
+        trustBackdrop.classList.add('is-visible');
+        setTimeout(function () {
+            trustBanner.classList.add('is-visible');
+        }, 700);
+    }
+
+    if (trustBanner && trustBackdrop) {
+        var shouldDismiss = false;
+        var startupTimer = null;
+
+        try {
+            shouldDismiss = sessionStorage.getItem(sessionKey) === 'true';
+        } catch (error) {
+            shouldDismiss = false;
+        }
+
+        function cancelScheduledReveal() {
+            if (startupTimer) {
+                clearTimeout(startupTimer);
+                startupTimer = null;
+            }
+        }
+
+        function handleInteractionDismiss() {
+            if (trustBanner && trustBanner.classList.contains('is-visible')) {
+                dismissTrustBanner();
+            }
+        }
+
+        if (!shouldDismiss) {
+            startupTimer = setTimeout(showTrustBanner, 1500);
+        }
+
+        var onScrollOrInteraction = function () {
+            if (trustBanner && trustBanner.classList.contains('is-visible')) {
+                handleInteractionDismiss();
+            }
+
+            cancelScheduledReveal();
+
+            var hero = document.querySelector('.trust-hero');
+            if (!hero) return;
+
+            var rect = hero.getBoundingClientRect();
+            if (rect.top > window.innerHeight || rect.bottom < 0) {
+                if (!shouldDismiss) {
+                    dismissTrustBanner();
+                }
+            }
+        };
+
+        window.addEventListener('scroll', onScrollOrInteraction, { passive: true });
+        window.addEventListener('resize', onScrollOrInteraction, { passive: true });
+        document.addEventListener('pointerdown', onScrollOrInteraction, { passive: true });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && trustBanner && trustBanner.classList.contains('is-visible')) {
+                dismissTrustBanner();
+            }
+        });
+
+        if (trustClose) {
+            trustClose.addEventListener('click', dismissTrustBanner);
+        }
+
+        trustBackdrop.addEventListener('click', dismissTrustBanner);
+    }
+
     var protectButtons = Array.prototype.slice.call(document.querySelectorAll('.protect-option'));
     var serviceButtons = Array.prototype.slice.call(document.querySelectorAll('.solution-service'));
     var submit = document.getElementById('solution-submit');
@@ -8,6 +110,8 @@
     var selection = document.getElementById('solution-selection');
     var note = document.getElementById('recommendation-note');
     var protectedType = '';
+    var isEnglish = document.documentElement.lang === 'en';
+    var recommendationValue = isEnglish ? 'I need a recommendation' : 'Am nevoie de recomandare';
 
     if (!submit || !serviceButtons.length) return;
 
@@ -21,13 +125,14 @@
 
     function updateSummary() {
         var services = selectedServices();
-        var canContinue = services.length > 0 || protectedType === 'Am nevoie de recomandare';
-        count.textContent = services.length ? services.length + (services.length === 1 ? ' serviciu selectat' : ' servicii selectate') : (canContinue ? 'Evaluare personalizată' : 'Niciun serviciu selectat');
-        selection.textContent = services.length ? services.join(' · ') : (canContinue ? 'Echipa Vigilent îți va recomanda soluția potrivită.' : 'Alege serviciile sau solicită o recomandare.');
+        var canContinue = services.length > 0 || protectedType === recommendationValue;
+        count.textContent = services.length ? services.length + (isEnglish ? (services.length === 1 ? ' service selected' : ' services selected') : (services.length === 1 ? ' serviciu selectat' : ' servicii selectate')) : (canContinue ? (isEnglish ? 'Personalised assessment' : 'Evaluare personalizată') : (isEnglish ? 'No services selected' : 'Niciun serviciu selectat'));
+        selection.textContent = services.length ? services.join(' · ') : (canContinue ? (isEnglish ? 'The Vigilent team will recommend the appropriate solution.' : 'Echipa Vigilent îți va recomanda soluția potrivită.') : (isEnglish ? 'Choose services or request a recommendation.' : 'Alege serviciile sau solicită o recomandare.'));
         submit.classList.toggle('is-disabled', !canContinue);
         submit.setAttribute('aria-disabled', String(!canContinue));
         submit.tabIndex = canContinue ? 0 : -1;
-        submit.href = canContinue ? 'contact.html?protect=' + encodeURIComponent(protectedType || 'Nespecificat') + '&services=' + encodeURIComponent(services.join('|') || 'Am nevoie de recomandare') + '#solicitare' : 'contact.html#solicitare';
+        var contactPage = isEnglish ? 'contact-en.html' : 'contact.html';
+        submit.href = canContinue ? contactPage + '?protect=' + encodeURIComponent(protectedType || (isEnglish ? 'Not specified' : 'Nespecificat')) + '&services=' + encodeURIComponent(services.join('|') || recommendationValue) + '#solicitare' : contactPage + '#solicitare';
     }
 
     protectButtons.forEach(function (button) {
@@ -37,9 +142,9 @@
             serviceButtons.forEach(function (service) {
                 var recommended = service.dataset.audiences.split(',').indexOf(protectedType) !== -1;
                 service.classList.toggle('is-recommended', recommended);
-                service.classList.toggle('is-muted', protectedType !== 'Am nevoie de recomandare' && !recommended);
+                service.classList.toggle('is-muted', protectedType !== recommendationValue && !recommended);
             });
-            note.textContent = protectedType === 'Am nevoie de recomandare' ? 'Nicio problemă — solicită evaluarea, iar echipa noastră îți va recomanda soluția.' : 'Serviciile recomandate pentru „' + protectedType + '” sunt evidențiate. Poți selecta orice combinație.';
+            note.textContent = protectedType === recommendationValue ? (isEnglish ? 'No problem — request an assessment and our team will recommend a solution.' : 'Nicio problemă — solicită evaluarea, iar echipa noastră îți va recomanda soluția.') : (isEnglish ? 'Recommended services for “' + protectedType + '” are highlighted. You can select any combination.' : 'Serviciile recomandate pentru „' + protectedType + '” sunt evidențiate. Poți selecta orice combinație.');
             updateSummary();
         });
     });

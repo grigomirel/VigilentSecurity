@@ -45,3 +45,22 @@
     body.vs-menu-open .vs-menu-toggle span:nth-child(3){opacity:0}
     body.vs-menu-open .vs-menu-toggle span:nth-child(4){transform:translateY(-7px) rotate(-45deg)}
 }
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+body.vs-privacy-opened { overflow:hidden; }
+.vs-privacy-dialog { position:fixed; inset:0; z-index:1000; visibility:hidden; opacity:0; font-family:Arial,Helvetica,sans-serif; transition:opacity .2s,visibility .2s; }
+.vs-privacy-dialog.open { visibility:visible; opacity:1; }
+.vs-privacy-backdrop { position:absolute; inset:0; background:rgba(1,7,12,.8); backdrop-filter:blur(6px); }
+.vs-privacy-panel { width:min(680px,calc(100% - 32px)); max-height:calc(100vh - 48px); padding:42px; position:absolute; top:50%; left:50%; overflow:auto; color:#d5dde7; background:#0b1724; border:1px solid rgba(85,199,239,.35); box-shadow:0 28px 90px rgba(0,0,0,.55); transform:translate(-50%,-46%); transition:transform .2s; outline:0; }
+.vs-privacy-dialog.open .vs-privacy-panel { transform:translate(-50%,-50%); }
+.vs-privacy-close { width:40px; height:40px; position:absolute; top:14px; right:14px; display:grid; place-items:center; color:#fff; background:transparent; border:1px solid rgba(255,255,255,.24); font-size:26px; cursor:pointer; }
+.vs-privacy-close:hover,.vs-privacy-close:focus-visible { color:#07141f; background:#55c7ef; border-color:#55c7ef; outline:0; }
+.vs-privacy-kicker { margin:0 0 12px; color:#55c7ef; font-size:10px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+.vs-privacy-panel h2 { max-width:540px; margin:0 45px 22px 0; color:#fff; font-size:clamp(28px,5vw,42px); line-height:1; letter-spacing:-.04em; }
+.vs-privacy-panel p,.vs-privacy-panel li { font-size:14px; line-height:1.7; }
+.vs-privacy-panel ul { margin:20px 0; padding-left:20px; }
+.vs-privacy-panel li+li { margin-top:7px; }
+.vs-privacy-panel a { color:#55c7ef; font-weight:700; }
+.vs-footer-legal .vs-privacy-open { background:none; }
+@media(max-width:600px){.vs-privacy-panel{max-height:calc(100vh - 24px);padding:32px 22px}.vs-privacy-close{top:10px;right:10px}.vs-privacy-panel h2{margin-right:35px}}
