@@ -140,8 +140,11 @@
     if (fieldImages.length) {
         var lightbox = document.createElement('div');
         lightbox.className = 'vs-lightbox';
+        lightbox.setAttribute('role', 'dialog');
+        lightbox.setAttribute('aria-modal', 'true');
+        lightbox.setAttribute('aria-label', isEnglish ? 'Image viewer' : 'Vizualizator imagini');
         lightbox.setAttribute('aria-hidden', 'true');
-        lightbox.innerHTML = '<button class="vs-lightbox-close" type="button" aria-label="&#206;nchide imaginea">&times;</button><button class="vs-lightbox-arrow vs-lightbox-prev" type="button" aria-label="Imaginea precedent&#259;">&#8249;</button><figure><img src="" alt=""><figcaption></figcaption></figure><button class="vs-lightbox-arrow vs-lightbox-next" type="button" aria-label="Imaginea urm&#259;toare">&#8250;</button>';
+        lightbox.innerHTML = '<button class="vs-lightbox-close" type="button" aria-label="' + (isEnglish ? 'Close image' : '&#206;nchide imaginea') + '">&times;</button><button class="vs-lightbox-arrow vs-lightbox-prev" type="button" aria-label="' + (isEnglish ? 'Previous image' : 'Imaginea precedent&#259;') + '">&#8249;</button><figure><img src="" alt=""><figcaption></figcaption></figure><button class="vs-lightbox-arrow vs-lightbox-next" type="button" aria-label="' + (isEnglish ? 'Next image' : 'Imaginea urm&#259;toare') + '">&#8250;</button>';
         document.body.appendChild(lightbox);
         var enlargedImage = lightbox.querySelector('img');
         var enlargedCaption = lightbox.querySelector('figcaption');
@@ -154,7 +157,9 @@
             enlargedImage.alt = fieldImages[activeImage].alt;
             var card = fieldImages[activeImage].closest('.certification-document');
             var cardTitle = card && card.querySelector('h3');
-            enlargedCaption.textContent = cardTitle ? cardTitle.textContent : fieldImages[activeImage].alt;
+            var figure = fieldImages[activeImage].closest('figure');
+            var figureCaption = figure && figure.querySelector('figcaption');
+            enlargedCaption.textContent = cardTitle ? cardTitle.textContent : (figureCaption ? figureCaption.textContent : fieldImages[activeImage].alt);
         }
         function openFieldImage(index) {
             previousFocus = document.activeElement;
@@ -190,6 +195,18 @@
             if (event.key === 'Escape') closeFieldImage();
             if (event.key === 'ArrowLeft') showFieldImage(activeImage - 1);
             if (event.key === 'ArrowRight') showFieldImage(activeImage + 1);
+            if (event.key === 'Tab') {
+                var controls = Array.prototype.slice.call(lightbox.querySelectorAll('button'));
+                var firstControl = controls[0];
+                var lastControl = controls[controls.length - 1];
+                if (event.shiftKey && document.activeElement === firstControl) {
+                    event.preventDefault();
+                    lastControl.focus();
+                } else if (!event.shiftKey && document.activeElement === lastControl) {
+                    event.preventDefault();
+                    firstControl.focus();
+                }
+            }
         });
     }
 

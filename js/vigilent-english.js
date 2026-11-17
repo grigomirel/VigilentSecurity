@@ -137,10 +137,5 @@
         list('.service-overview-card p',['Signals monitored continuously with a coordinated response.','Fast detection and immediate intrusion warning.','Secure, managed and fully traceable access.','Early warning and integrated systems.','Vehicle flow control and perimeter protection.','Mobile teams ready to respond to alarms.','Trained personnel for prevention, control and response.','Protection adapted to the location and activity.','Access control and on-site flow coordination.','Assessment, strategy and clear procedures for the property.']);
         list('.service-overview-card>a',Array(10).fill('Learn more →')); list('.service-label-tech',Array(6).fill('TECHNICAL')); list('.service-label-guard',Array(4).fill('GUARDING'));
         text('.services-offer p','Do you need several services?'); text('.services-offer a','Build your quote request →');
-        html('.home-intervention h2','Ready to <em>respond.</em>'); text('.home-intervention-copy>p:last-of-type','When a system connected to the monitoring centre is triggered, Vigilent mobile teams can be dispatched to verify the situation and apply the established procedures.'); text('.home-intervention-cta','Discover the service  ↗');
-        text('.home-intervention .eyebrow','REAL PRESENCE IN THE FIELD'); text('.home-process .eyebrow','HOW WE WORK');
-        html('.home-process h2','From a need to a <em>clear solution.</em>'); text('.home-process-head>p:last-child','A straightforward process adapted to the property and its real level of risk.');
-        list('.home-process-step h3',['Assess','Design','Implement','Stay close']);
-        list('.home-process-step p',['We discuss your needs and analyse the location, flows and vulnerable points.','We establish the services, equipment and procedures suited to the property.','We install the systems or organise the guarding arrangement and verify operation.','We monitor, respond and adapt the solution as needs change.']);
     }
 })();
