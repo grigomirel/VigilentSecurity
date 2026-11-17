@@ -83,7 +83,7 @@
         }
 
         if (!shouldDismiss) {
-            startupTimer = setTimeout(showTrustBanner, 700);
+            startupTimer = setTimeout(showTrustBanner, 1000);
         }
 
         var onScroll = function () {
