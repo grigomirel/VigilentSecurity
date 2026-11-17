@@ -73,7 +73,7 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .service-group-media h3 em { color:var(--yellow); font-style:normal; }
 .service-group-guard .service-group-media h3 em { color:#55c7ef; }
 .service-group-media p { max-width:420px; margin:18px 0 0; color:#c4ced6; font-size:14px; line-height:1.55; }
-.service-group-grid { display:grid; gap:1px; background:rgba(255,255,255,.12); }
+.service-group-grid { display:grid; gap:1px; background:#07141f; }
 .service-group-grid-tech { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .service-group-grid-guard { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .service-group-grid .service-overview-card { min-height:250px; padding:26px 25px; position:relative; isolation:isolate; overflow:hidden; border:0; background:rgba(5,15,24,.96); }
@@ -374,16 +374,21 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 @media(max-width:600px){.home-intervention{padding:72px 20px}.home-intervention-gallery{grid-template-columns:1fr 1fr;grid-template-rows:240px 145px}.home-intervention-gallery .home-intervention-main{grid-column:1/3;grid-row:auto}.vs-lightbox{padding:70px 14px 82px}.vs-lightbox-close{top:13px;right:13px}.vs-lightbox-arrow{top:auto;bottom:17px;transform:none}.vs-lightbox-prev{left:calc(50% - 62px)}.vs-lightbox-next{right:calc(50% - 62px)}}
 
 .trusted-backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: 20;
-    background: linear-gradient(90deg, rgba(2, 10, 18, 0.68) 0%, rgba(2, 10, 18, 0.46) 34%, rgba(2, 10, 18, 0.18) 62%, rgba(2, 10, 18, 0.46) 100%), linear-gradient(180deg, rgba(2, 10, 18, 0) 0%, rgba(2, 10, 18, 0.08) 52%, rgba(2, 10, 18, 0.22) 68%, rgba(2, 8, 14, 0.72) 100%);
+    z-index: 180;
+    background:
+        linear-gradient(90deg, rgba(2, 10, 18, 0.34) 0%, rgba(2, 10, 18, 0.08) 64%, rgba(2, 10, 18, 0.22) 100%),
+        radial-gradient(ellipse at 18% 100%, rgba(143, 146, 238, 0.26) 0%, rgba(62, 64, 149, 0.1) 30%, transparent 58%),
+        linear-gradient(0deg, rgba(2, 8, 14, 0.995) 0%, rgba(2, 8, 14, 0.98) 32%, rgba(2, 10, 18, 0.93) 58%, rgba(2, 10, 18, 0.76) 76%, rgba(2, 10, 18, 0.28) 91%, rgba(2, 10, 18, 0.06) 97%, transparent 100%);
+    backdrop-filter: blur(2px) saturate(0.72);
+    -webkit-backdrop-filter: blur(2px) saturate(0.72);
     opacity: 0;
-    transition: opacity 0.7s ease-out;
+    transition: opacity 0.5s ease-out;
     pointer-events: none;
 }
 
-.trust-hero .trusted-backdrop.is-visible {
+.trusted-backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
 }.trust-hero .hero-content,
@@ -422,19 +427,46 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
     pointer-events: none;
 }
 
-.trust-hero .trusted-environments {
-    position: absolute;
+/* Keep only the takeover map legible above the cinematic wash. */
+.trust-hero.is-takeover-active {
+    isolation: auto;
+}
+
+.trust-hero.is-takeover-active .trust-hero-layout {
+    z-index: auto;
+}
+
+.trust-hero.is-takeover-active .hero-map {
+    z-index: 185;
+    opacity: 0.34;
+    filter: saturate(0.78) brightness(0.9);
+}
+
+@media (min-height: 1100px) {
+    .trusted-backdrop::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 78%;
+        background: linear-gradient(180deg, transparent 0%, rgba(2, 8, 14, 0.9) 14%, #02080e 30%, #02080e 100%);
+        pointer-events: none;
+    }
+}
+
+.trusted-environments {
+    position: fixed;
     inset: 0;
     width: 100%;
-    height: 100%;
-    z-index: 30;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 190;
     display: block;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1.2s ease-out;
+    transition: opacity 0.45s ease-out;
 }
 
-.trust-hero .trusted-environments.is-visible {
+.trusted-environments.is-visible {
     opacity: 1;
     pointer-events: auto;
 }
@@ -442,8 +474,9 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 .trusted-environments-inner {
     position: absolute;
     left: max(48px, calc((100% - 1780px) / 2));
-    top: 50%;
-    width: min(760px, calc(100% - 96px));
+    bottom: max(clamp(64px, 9vh, 110px), calc(100vh - 900px));
+    bottom: max(clamp(64px, 9vh, 110px), calc(100dvh - 900px));
+    width: min(1120px, calc(100% - 96px));
     margin: 0;
     padding: 0;
     background: transparent;
@@ -452,30 +485,46 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    transform: translateY(-50%);
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.55s ease-out 0.08s, transform 0.85s cubic-bezier(0.2, 0.78, 0.2, 1) 0.08s;
 }
 
 .trusted-environments-inner::before {
-    content: none;
+    content: "";
+    width: clamp(74px, 7vw, 112px);
+    height: 4px;
+    position: absolute;
+    left: 2px;
+    top: -24px;
+    background: linear-gradient(90deg, var(--yellow), rgba(245, 198, 56, 0.08));
+    box-shadow: 0 0 22px rgba(245, 198, 56, 0.32);
+}
+
+.trusted-environments.is-visible .trusted-environments-inner {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .trusted-environments h2 {
     position: relative;
     z-index: 1;
     margin: 0;
-    max-width: 760px;
+    max-width: 1120px;
     color: #fff;
-    font-size: clamp(32px, 3.05vw, 58px);
-    line-height: 1.08;
-    letter-spacing: -0.055em;
-    font-weight: 800;
+    font-size: clamp(44px, 5vw, 78px);
+    line-height: 1.01;
+    letter-spacing: -0.06em;
+    font-weight: 850;
     text-align: left;
     text-wrap: balance;
-    text-shadow: 0 18px 32px rgba(0, 0, 0, 0.26);
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.46), 0 20px 54px rgba(0, 0, 0, 0.42);
 }
 
 .trusted-year {
     color: var(--yellow);
+    font-weight: 900;
+    text-shadow: 0 0 30px rgba(245, 198, 56, 0.2);
 }
 
 .trusted-year-wrap {
@@ -488,20 +537,21 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 
 .trusted-close {
     position: absolute;
-    top: clamp(88px, 7vw, 118px);
+    top: clamp(122px, 10vw, 154px);
     right: clamp(18px, 1.8vw, 32px);
     z-index: 220;
     width: 44px;
     height: 44px;
     display: grid;
     place-items: center;
-    background: rgba(8, 18, 30, 0.48);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(2, 8, 14, 0.78);
+    border: 1px solid rgba(255,255,255,0.3);
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
     font-size: 28px;
     line-height: 1;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.28);
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -515,50 +565,58 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
 
 @media (max-width: 900px) {
     .trusted-environments {
-        width: min(100%, calc(100% - 40px));
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-        padding-left: 0;
-        padding-right: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: none;
     }
 
     .trusted-environments-inner {
-        left: 20px;
-        width: calc(100% - 40px);
-        transform: translateY(-50%);
+        left: 28px;
+        bottom: max(clamp(52px, 8vh, 82px), calc(100vh - 900px));
+        bottom: max(clamp(52px, 8vh, 82px), calc(100dvh - 900px));
+        width: calc(100% - 56px);
     }
 
     .trusted-environments h2 {
         max-width: 100%;
-        font-size: clamp(30px, 5vw, 46px);
-        line-height: 1.1;
-        letter-spacing: -0.04em;
+        font-size: clamp(36px, 6.3vw, 56px);
+        line-height: 1.04;
+        letter-spacing: -0.05em;
     }
 }
 
 @media (max-width: 700px) {
+    .trusted-backdrop,
     .trusted-environments {
-        width: calc(100% - 28px);
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
     }
 
     .trusted-environments-inner {
         left: 20px;
+        bottom: max(42px, calc(env(safe-area-inset-bottom) + 24px));
         width: calc(100% - 40px);
-        transform: translateY(-50%);
+    }
+
+    .trusted-environments-inner::before {
+        top: -18px;
+        height: 3px;
     }
 
     .trusted-environments h2 {
         max-width: 100%;
         text-align: left;
-        font-size: clamp(24px, 7vw, 32px);
-        line-height: 1.14;
-        letter-spacing: -0.04em;
+        font-size: clamp(30px, 8.5vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.045em;
     }
 
     .trusted-close {
-        top: 18px;
-        right: 16px;
+        top: 104px;
+        right: 20px;
         width: 40px;
         height: 40px;
     }

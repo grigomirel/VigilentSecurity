@@ -113,7 +113,7 @@
         list('.field>label',['Full name *','Company','Phone','Email','What do you want to protect?','Message / details *']);
         text('.contact-rule','* Complete at least one contact field: phone or email.'); text('.service-choices legend','Services of interest *');
         list('.service-choice-groups>div>strong',['TECHNICAL','GUARDING']);
-        var serviceNames=['Monitoring 24/7','Alarm systems','Access control','Fire detection','Vehicle barriers','Mobile intervention teams','Security guards','Property guarding','Event security','Security plan','I am not sure — recommend a solution'];
+        var serviceNames=['Monitoring 24/7','Alarm systems','Access control','Fire detection','Vehicle barriers','Mobile intervention teams','Valuables transport','Security guards','Property guarding','Event security','Security plan','Bodyguard services','I am not sure — recommend a solution'];
         document.querySelectorAll('.service-choice-groups label').forEach(function (label, i) {
             var input = label.querySelector('input');
             if (!input || !serviceNames[i]) return;

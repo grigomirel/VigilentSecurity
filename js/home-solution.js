@@ -4,7 +4,19 @@
     var trustBanner = document.querySelector('.trusted-environments');
     var trustBackdrop = document.querySelector('.trusted-backdrop');
     var trustClose = document.querySelector('.trusted-close');
+    var trustBannerInner = document.querySelector('.trusted-environments-inner');
     var sessionKey = 'vigilentTrustBannerDismissed';
+    var revealTimer = null;
+
+    // The announcement is a viewport takeover, so keep it outside the hero's
+    // clipping and stacking context. This also covers content below the hero
+    // on tall screens.
+    if (trustBackdrop && trustBackdrop.parentNode !== document.body) {
+        document.body.appendChild(trustBackdrop);
+    }
+    if (trustBanner && trustBanner.parentNode !== document.body) {
+        document.body.appendChild(trustBanner);
+    }
 
     function setSessionDismissed() {
         try {
@@ -16,6 +28,10 @@
 
     function dismissTrustBanner() {
         if (!trustBanner || !trustBackdrop) return;
+        if (revealTimer) {
+            clearTimeout(revealTimer);
+            revealTimer = null;
+        }
         trustBanner.classList.remove('is-visible');
         trustBackdrop.classList.remove('is-visible');
         var hero = document.querySelector('.trust-hero');
@@ -37,9 +53,10 @@
 
         hero.classList.add('is-takeover-active');
         trustBackdrop.classList.add('is-visible');
-        setTimeout(function () {
+        revealTimer = setTimeout(function () {
             trustBanner.classList.add('is-visible');
-        }, 700);
+            revealTimer = null;
+        }, 250);
     }
 
     if (trustBanner && trustBackdrop) {
@@ -66,11 +83,11 @@
         }
 
         if (!shouldDismiss) {
-            startupTimer = setTimeout(showTrustBanner, 1500);
+            startupTimer = setTimeout(showTrustBanner, 700);
         }
 
-        var onScrollOrInteraction = function () {
-            if (trustBanner && trustBanner.classList.contains('is-visible')) {
+        var onScroll = function () {
+            if (trustBackdrop && trustBackdrop.classList.contains('is-visible')) {
                 handleInteractionDismiss();
             }
 
@@ -87,9 +104,13 @@
             }
         };
 
-        window.addEventListener('scroll', onScrollOrInteraction, { passive: true });
-        window.addEventListener('resize', onScrollOrInteraction, { passive: true });
-        document.addEventListener('pointerdown', onScrollOrInteraction, { passive: true });
+        window.addEventListener('scroll', onScroll, { passive: true });
+        document.addEventListener('pointerdown', function (event) {
+            if (!trustBanner.classList.contains('is-visible')) return;
+            if (trustBannerInner && trustBannerInner.contains(event.target)) return;
+            if (trustClose && trustClose.contains(event.target)) return;
+            dismissTrustBanner();
+        }, { passive: true });
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape' && trustBanner && trustBanner.classList.contains('is-visible')) {
                 dismissTrustBanner();
