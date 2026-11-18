@@ -17,6 +17,16 @@
         if (!services && !protectedType) return;
 
         var serviceList = services ? services.split('|').filter(Boolean) : [];
+        if (isEnglish) {
+            var legacyServiceAliases = {
+                'Monitoring and intervention': 'Monitoring 24/7',
+                'Fire detection and alarm': 'Fire detection',
+                'Vehicle barriers and access': 'Vehicle barriers'
+            };
+            serviceList = serviceList.map(function (service) {
+                return legacyServiceAliases[service] || service;
+            });
+        }
         var serviceField = form.querySelector('#service');
         var objectField = form.querySelector('#object-type');
         var messageField = form.querySelector('#message');

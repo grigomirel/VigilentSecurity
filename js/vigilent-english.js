@@ -30,8 +30,8 @@
     document.querySelectorAll('.vs-dropdown-toggle').forEach(function (button, i) {
         button.innerHTML = (i === 0 ? 'Vigilent Technical Security' : 'Vigilent Guarding') + ' <span class="vs-chevron" aria-hidden="true"></span>';
     });
-    var navStrong = ['Monitoring', 'Alarm systems', 'Access control', 'Fire detection and alarm', 'Vehicle barriers', 'Mobile intervention teams', 'Security guards', 'Property guarding', 'Event security', 'Security plan'];
-    var navSmall = ['Permanent monitoring 24/7', 'Fast detection and warning', 'Secure, managed access', 'Detection, signalling and warning systems', 'Vehicle and perimeter control', 'Mobile teams ready to respond', 'Trained and licensed personnel', 'Companies, institutions and properties', 'Organised control and protection', 'Solutions adapted to each property'];
+    var navStrong = ['Monitoring', 'Alarm systems', 'Access control', 'Fire detection and alarm', 'Vehicle barriers', 'Mobile intervention teams', 'Valuables transport', 'Security guards', 'Property guarding', 'Event security', 'Security plan', 'Bodyguard services'];
+    var navSmall = ['Permanent monitoring 24/7', 'Fast detection and warning', 'Secure, managed access', 'Detection, signalling and warning systems', 'Vehicle and perimeter control', 'Mobile teams ready to respond', 'Secure transport for valuables', 'Trained and licensed personnel', 'Companies, institutions and properties', 'Organised control and protection', 'Solutions adapted to each property', 'Discreet close protection'];
     list('.vs-panel-link strong', navStrong); list('.vs-panel-link small', navSmall);
     text('.vs-contact', 'Contact  ↗');
 
@@ -133,9 +133,5 @@
         text('.services-overview-heading .eyebrow','INTEGRATED PROTECTION'); text('.services-overview-heading>p','Technology, monitoring and trained people working together to protect every property.');
         html('#technical-services-title','Technical<br><em>security.</em>'); html('#guard-services-title','Guarding &amp;<br><em>protection.</em>');
         list('.service-group-media>div>span',['COMPANY 01','COMPANY 02']); list('.service-group-media p',['Systems that detect, verify and trigger the appropriate response.','Trained people ready to prevent, observe and act.']);
-        list('.service-overview-card h3',['Monitoring 24/7','Alarm systems','Access control','Fire detection','Vehicle barriers','Intervention','Security guards','Property guarding','Event security','Security plan']);
-        list('.service-overview-card p',['Signals monitored continuously with a coordinated response.','Fast detection and immediate intrusion warning.','Secure, managed and fully traceable access.','Early warning and integrated systems.','Vehicle flow control and perimeter protection.','Mobile teams ready to respond to alarms.','Trained personnel for prevention, control and response.','Protection adapted to the location and activity.','Access control and on-site flow coordination.','Assessment, strategy and clear procedures for the property.']);
-        list('.service-overview-card>a',Array(10).fill('Learn more →')); list('.service-label-tech',Array(6).fill('TECHNICAL')); list('.service-label-guard',Array(4).fill('GUARDING'));
-        text('.services-offer p','Do you need several services?'); text('.services-offer a','Build your quote request →');
     }
 })();
