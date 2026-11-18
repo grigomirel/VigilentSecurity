@@ -125,7 +125,7 @@
 
     if (page === 'acasa') {
         html('.hero h1','We protect what <em>matters.</em>'); text('.hero-copy','Integrated guarding, video surveillance, monitoring and 24/7 intervention services for companies, institutions and properties.');
-        text('.hero .eyebrow','NATIONWIDE SECURITY'); text('.hero-actions a','Request a quote →');
+        text('.hero .eyebrow','NATIONWIDE SECURITY'); html('.hero-actions .button-cyan','Explore our services <span aria-hidden="true">↓</span>'); html('.hero-actions .button-primary','Request a quote <span aria-hidden="true">↗</span>');
         list('.hero-metrics small',['employees','availability','nationwide coverage']); list('.hero-metrics strong',['650+','24/7','Romania']);
         text('#partners-title','PARTNERS WHO TRUST US'); list('.partner-set span',Array(20).fill('PARTNER LOGO')); html('.hero-status','<span class="pulse"></span> AVAILABLE 24 / 7');
         list('.hero-map .map-pin',['Bucharest','Cluj-Napoca','Iași','Timișoara','Drobeta-Turnu Severin','Constanța','Brașov','Craiova']);
