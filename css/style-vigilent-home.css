@@ -475,7 +475,7 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
     -webkit-backdrop-filter: none;
     opacity: 0;
     transform: translateY(34px);
-    transition: opacity 0.66s ease-out 0.08s, transform 1.02s cubic-bezier(0.2, 0.78, 0.2, 1) 0.08s;
+    transition: opacity 0.55s ease-out 0.08s, transform 1.06s cubic-bezier(0.2, 0.78, 0.2, 1) 0.08s;
 }
 
 .trusted-environments-inner::before {
