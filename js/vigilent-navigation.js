@@ -28,9 +28,13 @@
 
     var actions = document.querySelector('.vs-actions');
     if (actions) {
-        var currentPage = window.location.pathname.split('/').pop() || (isEnglish ? 'acasa-en.html' : 'index.html');
-        var romanianPage = currentPage === 'index.html' ? './' : currentPage.replace('-en.html', '.html');
-        var englishPage = currentPage === 'index.html' ? 'acasa-en.html' : (/-en\.html$/.test(currentPage) ? currentPage : currentPage.replace('.html', '-en.html'));
+        var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        var romanianPage = (/-en\.html$/.test(currentPage) && currentPage !== 'acasa-en.html')
+            ? currentPage.replace('-en.html', '.html')
+            : './';
+        var englishPage = currentPage === 'index.html'
+            ? 'acasa-en.html'
+            : (/-en\.html$/.test(currentPage) ? currentPage : currentPage.replace('.html', '-en.html'));
         var language = document.createElement('div');
         language.className = 'vs-language';
         language.innerHTML = '<button class="vs-language-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-label="' + (isEnglish ? 'Select language' : 'Selecteaz&#259; limba') + '"><img src="images/Flags/' + (isEnglish ? 'united-kingdom.svg' : 'romania.svg') + '" alt=""><span>' + (isEnglish ? 'EN' : 'RO') + '</span><i aria-hidden="true"></i></button><div class="vs-language-menu"><a href="' + romanianPage + '"><img src="images/Flags/romania.svg" alt="">Rom&#226;n&#259;</a><a href="' + englishPage + '"><img src="images/Flags/united-kingdom.svg" alt="">English</a></div>';
