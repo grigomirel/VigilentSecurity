@@ -29,9 +29,11 @@
     var actions = document.querySelector('.vs-actions');
     if (actions) {
         var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        var romanianPage = (/-en\.html$/.test(currentPage) && currentPage !== 'acasa-en.html')
-            ? currentPage.replace('-en.html', '.html')
-            : './';
+        var romanianPage = currentPage === 'acasa-en.html'
+            ? 'index.html'
+            : ((/-en\.html$/.test(currentPage))
+                ? currentPage.replace('-en.html', '.html')
+                : './');
         var englishPage = currentPage === 'index.html'
             ? 'acasa-en.html'
             : (/-en\.html$/.test(currentPage) ? currentPage : currentPage.replace('.html', '-en.html'));
