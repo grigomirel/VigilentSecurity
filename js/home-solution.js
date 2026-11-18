@@ -4,7 +4,6 @@
     var trustBanner = document.querySelector('.trusted-environments');
     var trustBackdrop = document.querySelector('.trusted-backdrop');
     var trustClose = document.querySelector('.trusted-close');
-    var trustBannerInner = document.querySelector('.trusted-environments-inner');
     var sessionKey = 'vigilentTrustBannerDismissed';
     var revealTimer = null;
 
@@ -28,6 +27,7 @@
 
     function dismissTrustBanner() {
         if (!trustBanner || !trustBackdrop) return;
+        if (!trustBanner.classList.contains('is-visible') && !trustBackdrop.classList.contains('is-visible')) return;
         if (revealTimer) {
             clearTimeout(revealTimer);
             revealTimer = null;
@@ -106,8 +106,7 @@
 
         window.addEventListener('scroll', onScroll, { passive: true });
         document.addEventListener('pointerdown', function (event) {
-            if (!trustBanner.classList.contains('is-visible')) return;
-            if (trustBannerInner && trustBannerInner.contains(event.target)) return;
+            if (!trustBackdrop.classList.contains('is-visible')) return;
             if (trustClose && trustClose.contains(event.target)) return;
             dismissTrustBanner();
         }, { passive: true });
