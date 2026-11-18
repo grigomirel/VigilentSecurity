@@ -6,7 +6,6 @@
     var trustClose = document.querySelector('.trusted-close');
     var sessionKey = 'vigilentTrustBannerDismissed';
     var revealTimer = null;
-    var takeoverCancelled = false;
 
     // The announcement is a viewport takeover, so keep it outside the hero's
     // clipping and stacking context. This also covers content below the hero
@@ -43,7 +42,7 @@
     }
 
     function showTrustBanner() {
-        if (!trustBanner || !trustBackdrop || takeoverCancelled) return;
+        if (!trustBanner || !trustBackdrop) return;
 
         var hero = document.querySelector('.trust-hero');
         if (!hero) return;
@@ -55,8 +54,11 @@
         hero.classList.add('is-takeover-active');
         trustBackdrop.classList.add('is-visible');
         revealTimer = setTimeout(function () {
-            if (takeoverCancelled) {
-                revealTimer = null;
+            var revealHero = document.querySelector('.trust-hero');
+            if (!revealHero) return;
+            var revealRect = revealHero.getBoundingClientRect();
+            if (revealRect.top >= window.innerHeight || revealRect.bottom <= 0) {
+                dismissTrustBanner();
                 return;
             }
             trustBanner.classList.add('is-visible');
@@ -74,10 +76,7 @@
             shouldDismiss = false;
         }
 
-        takeoverCancelled = shouldDismiss;
-
         function cancelScheduledReveal() {
-            takeoverCancelled = true;
             if (startupTimer) {
                 clearTimeout(startupTimer);
                 startupTimer = null;
@@ -86,7 +85,6 @@
                 clearTimeout(revealTimer);
                 revealTimer = null;
             }
-            setSessionDismissed();
         }
 
         function handleInteractionDismiss() {
@@ -96,26 +94,20 @@
         }
 
         if (!shouldDismiss) {
-            startupTimer = setTimeout(function () {
-                startupTimer = null;
-                showTrustBanner();
-            }, 1000);
+            startupTimer = setTimeout(showTrustBanner, 1000);
         }
 
-        var lastScrollY = window.scrollY || 0;
         var onScroll = function () {
-            var currentScrollY = window.scrollY || 0;
-            if (Math.abs(currentScrollY - lastScrollY) < 2) return;
-            lastScrollY = currentScrollY;
+            var hero = document.querySelector('.trust-hero');
+            if (!hero) return;
 
-            if (trustBackdrop.classList.contains('is-visible')) {
-                handleInteractionDismiss();
-            }
+            var rect = hero.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) return;
 
-            if (startupTimer || revealTimer) {
-                cancelScheduledReveal();
+            if (trustBackdrop && trustBackdrop.classList.contains('is-visible')) {
+                dismissTrustBanner();
             } else {
-                takeoverCancelled = true;
+                cancelScheduledReveal();
                 setSessionDismissed();
             }
         };
