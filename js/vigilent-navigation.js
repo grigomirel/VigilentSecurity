@@ -29,11 +29,12 @@
     var actions = document.querySelector('.vs-actions');
     if (actions) {
         var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        var currentDocument = window.location.pathname.slice(-1) === '/' ? './' : currentPage;
         var romanianPage = currentPage === 'acasa-en.html'
-            ? 'index.html'
+            ? romanianHome
             : ((/-en\.html$/.test(currentPage))
                 ? currentPage.replace('-en.html', '.html')
-                : './');
+                : currentDocument);
         var englishPage = currentPage === 'index.html'
             ? 'acasa-en.html'
             : (/-en\.html$/.test(currentPage) ? currentPage : currentPage.replace('.html', '-en.html'));
