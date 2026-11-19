@@ -63,7 +63,7 @@
             }
             trustBanner.classList.add('is-visible');
             revealTimer = null;
-        }, 250);
+        }, 425);
     }
 
     if (trustBanner && trustBackdrop) {

@@ -451,7 +451,7 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
     display: block;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.45s ease-out;
+    transition: opacity 0.7s ease-out;
 }
 
 .trusted-environments.is-visible {
@@ -475,7 +475,7 @@ h1,h2,h3 { margin:0; letter-spacing:-.055em; }h1 { max-width:800px; font-size:cl
     -webkit-backdrop-filter: none;
     opacity: 0;
     transform: translateY(34px);
-    transition: opacity 0.55s ease-out 0.08s, transform 2.44s cubic-bezier(0.2, 0.78, 0.2, 1) 0.08s;
+    transition: opacity 1.15s ease-out 0.2s, transform 2.44s cubic-bezier(0.2, 0.78, 0.2, 1) 0.2s;
 }
 
 .trusted-environments-inner::before {
