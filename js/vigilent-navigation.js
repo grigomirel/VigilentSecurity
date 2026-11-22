@@ -1,5 +1,6 @@
 (function () {
     var isEnglish = document.documentElement.lang === 'en';
+    var nativeServiceContent = document.body.getAttribute('data-service-content') === 'native';
     var romanianHome = window.location.protocol === 'file:' ? 'index.html' : './';
     // Relative site-root links work on GitHub Pages and on the custom domain,
     // but under file:// a directory URL does not reliably load index.html.
@@ -90,7 +91,7 @@
         if (intro) {
             var introLabel = intro.querySelector('.section-label');
             var genericHeading = intro.querySelector('h2');
-            if (introLabel) introLabel.textContent = isEnglish ? 'What the service includes' : 'Ce include serviciul';
+            if (introLabel && !nativeServiceContent) introLabel.textContent = isEnglish ? 'What the service includes' : 'Ce include serviciul';
             if (genericHeading) genericHeading.remove();
 
             var pageName = (window.location.pathname.split('/').pop() || '').replace('-en.html', '.html');
@@ -112,7 +113,7 @@
                     ['images/Vigilent/projects/intervention-vehicles-road.jpg', 'Vehicule de interven&#539;ie &#238;n teren']
                 ]
             };
-            if (evidenceByPage[pageName]) {
+            if (evidenceByPage[pageName] && !document.querySelector('.work-evidence')) {
                 var evidenceSection = document.createElement('section');
                 evidenceSection.className = 'work-evidence';
                 if (pageName === 'bariere.html') evidenceSection.classList.add('work-evidence--portrait');
@@ -124,7 +125,7 @@
             }
 
             var supportsIntervention = !hero.classList.contains('hero-paza') && !hero.classList.contains('hero-interventie');
-            if (supportsIntervention) {
+            if (supportsIntervention && !document.querySelector('.intervention-note')) {
                 var interventionNote = document.createElement('aside');
                 interventionNote.className = 'intervention-note';
                 interventionNote.innerHTML = isEnglish ? '<span aria-hidden="true">24/7</span><div><strong>Intervention teams available</strong><p>When a system connected to the monitoring centre is triggered, a mobile team can be dispatched to verify the situation and apply the established procedures. Availability depends on the contract and operational coverage.</p><a href="grupuri-de-interventie-en.html">Intervention details &#8594;</a></div>' : '<span aria-hidden="true">24/7</span><div><strong>Grupuri de interven&#539;ie disponibile</strong><p>La declan&#537;area unui sistem conectat la dispecerat, un grup mobil de interven&#539;ie poate fi trimis pentru verificarea situa&#539;iei &#537;i aplicarea procedurilor stabilite. Serviciul este disponibil &#238;n func&#539;ie de contract &#537;i de acoperirea opera&#539;ional&#259;.</p><a href="grupuri-de-interventie.html">Detalii despre interven&#539;ie &#8594;</a></div>';

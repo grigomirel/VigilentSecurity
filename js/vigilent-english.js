@@ -3,6 +3,7 @@
     if (document.documentElement.lang !== 'en') return;
 
     var page = (location.pathname.split('/').pop() || 'acasa-en.html').replace('-en.html', '');
+    var nativeServiceContent = document.body.getAttribute('data-service-content') === 'native';
     function text(selector, value) { var el = document.querySelector(selector); if (el) el.textContent = value; }
     function html(selector, value) { var el = document.querySelector(selector); if (el) el.innerHTML = value; }
     function list(selector, values) { document.querySelectorAll(selector).forEach(function (el, i) { if (values[i] != null) el.textContent = values[i]; }); }
@@ -11,12 +12,12 @@
         acasa: ['Security Company and Security Systems | Vigilent Security Group', 'Integrated guarding, monitoring, intervention and technical security services for companies, institutions and properties.'],
         'despre-noi': ['About us | Vigilent Security', 'About Vigilent Security.'],
         contact: ['Contact and quote request | Vigilent Security', 'Contact Vigilent Security and request an assessment for your property.'],
-        monitorizare: ['Monitoring and intervention | Vigilent Security', 'Permanent monitoring of security signals and coordinated response according to agreed procedures.'],
-        'sisteme-de-alarma': ['Alarm systems | Vigilent Security', 'Alarm systems designed around the risks and operating needs of each property.'],
-        'control-acces': ['Access control | Vigilent Security', 'Controlled access solutions for people, vehicles and restricted areas.'],
-        'sisteme-alerta-incendiu': ['Fire detection and alarm | Vigilent Security', 'Fire detection, signalling and warning systems configured for each property.'],
-        bariere: ['Vehicle barriers and access | Vigilent Security', 'Vehicle barriers and access control solutions for commercial, industrial and residential properties.'],
-        'grupuri-de-interventie': ['Mobile intervention teams | Vigilent Security', 'Mobile Vigilent Security teams available for alarm verification and intervention.'],
+        monitorizare: ['Monitoring and intervention | Vigilent Security', 'Live alarm and video monitoring, retained footage for later review, and coordinated response under agreed procedures.'],
+        'sisteme-de-alarma': ['Alarm systems | Vigilent Security', 'Alarm systems designed, installed, tested and maintained around site risks, with optional connection to monitoring.'],
+        'control-acces': ['Access control | Vigilent Security', 'Access control for employees, visitors and vehicles, with configurable permissions and event traceability.'],
+        'sisteme-alerta-incendiu': ['Fire detection and alarm | Vigilent Security', 'Fire detection and alarm system design, installation, testing, maintenance and optional signal transmission.'],
+        bariere: ['Vehicle barriers and access | Vigilent Security', 'Vehicle barriers, permissions and safety components configured around controlled vehicle flows.'],
+        'grupuri-de-interventie': ['Mobile intervention teams | Vigilent Security', 'Mobile teams activated for on-site alarm verification within the coverage and conditions agreed by contract.'],
         'paza-umana': ['Security guards | Vigilent Security', 'Professional guarding services adapted to each property and its operating requirements.'],
         'paza-obiective': ['Property guarding | Vigilent Security', 'Guarding services for companies, institutions, commercial and industrial sites and private properties.'],
         'securitate-evenimente': ['Event security | Vigilent Security', 'Security planning, access control and on-site coordination for events.'],
@@ -100,7 +101,9 @@
         var cards = data.equipment || []; document.querySelectorAll('.equipment-card').forEach(function (card, i) { var parts=(cards[i] || '|').split('|'); text.call(null, '.nothing', ''); var h=card.querySelector('h3'), p=card.querySelector('p'); if(h)h.textContent=parts[0]; if(p)p.textContent=parts[1]; });
         text('.service-cta h2', 'Tell us what needs protection.'); text('.service-cta a', 'Request an assessment →');
     }
-    if (services[page]) applyService(services[page]);
+    // Reworked service pages carry complete bilingual copy in their HTML. Keep
+    // this legacy mapper only for pages that have not yet been migrated.
+    if (services[page] && !nativeServiceContent) applyService(services[page]);
 
     if (page === 'paza-umana') {
         applyService({kicker:'Professional presence on site',title:'Professional <em>security guarding.</em>',lead:'Trained security personnel protect people, property and daily operations according to clear, property-specific instructions.',intro:'The guarding service is designed around the location, activity, public flow, working hours and identified risks. Guards work according to defined duties and reporting procedures.',benefits:['Trained and licensed security personnel','Access and visitor control','Patrols and vulnerable-area checks','Incident prevention and response','Clear reporting procedures','Integration with technical security systems'],equipment:['Security personnel|Selected and instructed for the assigned property.','Post instructions|Define responsibilities and response procedures.','Communication equipment|Maintains operational contact and coordination.','Patrol planning|Ensures regular checks of sensitive areas.','Event reporting|Records relevant observations and incidents.','Operational supervision|Supports quality and procedural compliance.']});
