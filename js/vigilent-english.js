@@ -3,7 +3,10 @@
     if (document.documentElement.lang !== 'en') return;
 
     var page = (location.pathname.split('/').pop() || 'acasa-en.html').replace('-en.html', '');
-    var nativeServiceContent = document.body.getAttribute('data-service-content') === 'native';
+    // Every English page now carries its final copy in HTML. Keep the legacy
+    // mapper as a fallback for any future unmarked page, but never let it
+    // replace the page-specific metadata or content of a native page.
+    var nativeContent = document.body.getAttribute('data-native-content') === 'true';
     function text(selector, value) { var el = document.querySelector(selector); if (el) el.textContent = value; }
     function html(selector, value) { var el = document.querySelector(selector); if (el) el.innerHTML = value; }
     function list(selector, values) { document.querySelectorAll(selector).forEach(function (el, i) { if (values[i] != null) el.textContent = values[i]; }); }
@@ -23,7 +26,7 @@
         'securitate-evenimente': ['Event security | Vigilent Security', 'Security planning, access control and on-site coordination for events.'],
         'plan-securitate': ['Security plan | Vigilent Security', 'Clear security procedures built around the property, risks and responsibilities.']
     };
-    if (meta[page]) { document.title = meta[page][0]; var d = document.querySelector('meta[name="description"]'); if (d) d.content = meta[page][1]; }
+    if (meta[page] && !nativeContent) { document.title = meta[page][0]; var d = document.querySelector('meta[name="description"]'); if (d) d.content = meta[page][1]; }
 
     var nav = document.querySelector('.vs-nav'); if (nav) nav.setAttribute('aria-label', 'Main navigation');
     text('.vs-menu-toggle .sr-only', 'Open menu');
@@ -101,15 +104,15 @@
         var cards = data.equipment || []; document.querySelectorAll('.equipment-card').forEach(function (card, i) { var parts=(cards[i] || '|').split('|'); text.call(null, '.nothing', ''); var h=card.querySelector('h3'), p=card.querySelector('p'); if(h)h.textContent=parts[0]; if(p)p.textContent=parts[1]; });
         text('.service-cta h2', 'Tell us what needs protection.'); text('.service-cta a', 'Request an assessment →');
     }
-    // Reworked service pages carry complete bilingual copy in their HTML. Keep
-    // this legacy mapper only for pages that have not yet been migrated.
-    if (services[page] && !nativeServiceContent) applyService(services[page]);
+    // Reworked pages carry complete bilingual copy in their HTML. Keep this
+    // legacy mapper only for a future page that has not been marked native.
+    if (services[page] && !nativeContent) applyService(services[page]);
 
-    if (page === 'paza-umana') {
+    if (page === 'paza-umana' && !nativeContent) {
         applyService({kicker:'Professional presence on site',title:'Professional <em>security guarding.</em>',lead:'Trained security personnel protect people, property and daily operations according to clear, property-specific instructions.',intro:'The guarding service is designed around the location, activity, public flow, working hours and identified risks. Guards work according to defined duties and reporting procedures.',benefits:['Trained and licensed security personnel','Access and visitor control','Patrols and vulnerable-area checks','Incident prevention and response','Clear reporting procedures','Integration with technical security systems'],equipment:['Security personnel|Selected and instructed for the assigned property.','Post instructions|Define responsibilities and response procedures.','Communication equipment|Maintains operational contact and coordination.','Patrol planning|Ensures regular checks of sensitive areas.','Event reporting|Records relevant observations and incidents.','Operational supervision|Supports quality and procedural compliance.']});
     }
 
-    if (page === 'contact') {
+    if (page === 'contact' && !nativeContent) {
         text('.contact-eyebrow','We are here to help'); html('.contact-intro h1','Tell us what needs <em>protection.</em>'); text('.contact-lead','Describe the property and the services you need. The Vigilent Security team will review your request and contact you about the next steps.');
         list('.contact-detail small',['Head office','Phone / monitoring centre','Facebook','Email']); text('.contact-map-frame span','Nationwide coverage');
         text('.offer-card h2','Quote request'); text('.offer-card>p','Complete the form and our team will contact you to clarify the property requirements.');
@@ -126,7 +129,7 @@
         text('#offer-submit span','SEND REQUEST'); html('.form-note','We use your information only to answer your request. <a href="#privacy" class="vs-privacy-open">How we use your information</a>.');
     }
 
-    if (page === 'acasa') {
+    if (page === 'acasa' && !nativeContent) {
         html('.hero h1','We protect what <em>matters.</em>'); text('.hero-copy','Integrated guarding, video surveillance, monitoring and 24/7 intervention services for companies, institutions and properties.');
         text('.hero .eyebrow','NATIONWIDE SECURITY'); html('.hero-actions .button-cyan','Explore our services <span aria-hidden="true">↓</span>'); html('.hero-actions .button-primary','Request a quote <span aria-hidden="true">↗</span>');
         list('.hero-metrics small',['employees','availability','nationwide coverage']); list('.hero-metrics strong',['650+','24/7','Romania']);
